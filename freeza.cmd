@@ -706,8 +706,8 @@ type = ChangeState
 value = 1501
 triggerall = var(20) >= 0
 triggerall = command = "c"
-trigger1 = stateno = 1500
-trigger1 = animelemtime(2) >= 0
+trigger1 = stateno = [1500, 1501]
+trigger1 = animelemtime(1) >= 5
 
 ;---------------------------------------------------------------------------
 ;Fireball

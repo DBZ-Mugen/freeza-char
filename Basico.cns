@@ -1689,7 +1689,7 @@ ctrl = 1
 type = displaytoclipboard
 trigger1 = 1
 text = "Helpers = %d Explods = %d var = %d P2dist x = %.0f P2dist y = %.0f"
-params = numhelper, numexplod, var(48), p2bodydist x, p2bodydist y
+params = numhelper, numexplod, var(20), p2bodydist x, p2bodydist y
 
 ; Guarda el valor del anim en el time = 1 (para zanzoken por ejemplo)
 [State 0, Varset]
@@ -1791,7 +1791,7 @@ value = 0
 
 [State 0, VarAdd]
 type = Varset
-trigger1 = var(20) = 5
+trigger1 = var(20) = 10
 v = 20
 value = -50
 
@@ -1800,6 +1800,12 @@ type = Varadd
 trigger1 = var(20) < 0
 v = 20
 value = 1
+
+[State 0, VarAdd]
+type = Varset
+trigger1 = stateno != [1500,1504]
+v = 43
+value = 0
 
 ;--------------------------------------------
 ;Ozaru Loose life

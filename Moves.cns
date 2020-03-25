@@ -1170,11 +1170,11 @@ triggerall = anim = 1500
 trigger1 = AnimElem = 3
 anim = 6000
 ID = 6000
-pos = 55,-68
+pos = 35,-45
 postype = p1
 bindtime = 1
 removetime = -2
-scale = .35,.35
+scale = .25,.25
 sprpriority = 3
 shadow = 0,0,0
 ownpal = 1
@@ -1187,10 +1187,10 @@ helpertype = normal ;player
 name = "fireball"
 ID = 7002
 stateno = 7002
-pos = 52,-68
+pos = 35,-45
 postype = p1
-size.xscale = .4
-size.yscale = .4
+size.xscale = 1
+size.yscale = .05
 
 [State 210, 5]
 type = ChangeState
@@ -1202,10 +1202,10 @@ ctrl = 1
 ; Fireball 2
 [Statedef 1501]
 type    = S
-movetype= I
+movetype = I
 physics = S
 juggle  = 4
-poweradd= -100
+poweradd = -100
 ctrl = 0
 anim = 1501
 
@@ -1215,33 +1215,37 @@ trigger1 = !time
 v = 20
 value = 1
 
+[State 0, ExplodY]
+type = VarSet
+trigger1 = time = 0
+v = 43
+value = random
+
 [State 0, Explod]
 type = Explod
-triggerall = anim = 1501
 trigger1 = AnimElem = 1
 anim = 6000
 ID = 6000
-pos = 52,-68
+pos = ifelse(var(43) > 500, 25, 30), ifelse(var(43) > 500, -48, -40)
 postype = p1
 bindtime = 1
 removetime = -2
-scale = .35,.35
+scale = .25,.25
 sprpriority = 3
 shadow = 0,0,0
 ownpal = 1
 
 [State 0, Helper]
 type = Helper
-triggerall = anim = 1501
 trigger1 = AnimElem = 1
 helpertype = normal ;player
 name = "fireball"
 ID = 7002
 stateno = 7002
-pos = 52,-68
+pos = ifelse(var(43) > 500, 25, 30), ifelse(var(43) > 500, -48, -40)
 postype = p1
-size.xscale = .4
-size.yscale = .4
+size.xscale = 1
+size.yscale = .05
 
 [State 210, 5]
 type = ChangeState
