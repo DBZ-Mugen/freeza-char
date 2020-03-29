@@ -661,19 +661,10 @@ ctrl = 0
 anim = 7022
 sprpriority = 3
 
-;===========================================
-; VELOCITY
-;===========================================
-
 [State 0, VelSet]
 type = VelSet
 trigger1 = 1
 x = 10
-y = ifelse(random>=500,-random%3,random%3)
-
-;===========================================
-; FX
-;===========================================
 
 [State 0, AfterImage]
 type = AfterImage
@@ -695,14 +686,10 @@ flag = noshadow
 persistent = 1
 ignorehitpause = 1
 
-;===========================================
-; PROJECTILE COLLISION
-;===========================================
-
 [State 0, HitOverride]
 type = HitOverride
 trigger1 = 1
-stateno = ifelse(root,var(21) >= 5, 7007, 7005)
+stateno = 7007
 attr = SCA,SP,HP
 slot = 1
 time = -1
@@ -714,16 +701,12 @@ value = SCA,SP,HP
 time = 1
 ignorehitpause = 1
 
-;===========================================
-; HIT
-;===========================================
-
 [State 200,HitDef]
 type = HitDef
 trigger1 = !time
 attr = S,SP
 animtype = Light
-damage = 60+root, var(21) * 10, root, var(21) * 5
+damage = 100, 50
 guardflag = MA
 hitflag = MAF
 priority = 2,Hit
@@ -736,11 +719,7 @@ ground.hittime = 18
 ground.velocity = -8
 air.velocity= -8,-3
 air.fall = 1
-fall = ifelse(root,var(21) >= 5, 1, 0)
-
-;===========================================
-; CHANGESTATE
-;===========================================
+fall = 1
 
 [State 0, ChangeState]
 type = ChangeState
@@ -2092,7 +2071,7 @@ persistent = 1
 type = BindToParent
 trigger1 = parent,stateno = 1505
 time = 1
-pos = 50,-70
+pos = 27,-45
 
 [State 0, BindToParent]
 type = BindToParent
