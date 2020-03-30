@@ -3,7 +3,7 @@
 ; hand down fireball fx
 [Statedef 6001]
 type = A
-anim = 6000
+anim = 7000
 sprpriority = 3
 velset = 0, 0
 
@@ -15,7 +15,7 @@ flag = noshadow
 [State 0, AngleDraw]
 type = AngleDraw
 trigger1 = 1
-value = -45
+value = 135
 
 [State 0, Trans]
 type = Trans

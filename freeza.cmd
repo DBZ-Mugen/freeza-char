@@ -687,19 +687,6 @@ trigger2 = stateno = [210,250]
 trigger2 = movehit
 
 ;---------------------------------------------------------------------------
-;AirBeam
-[State -1, AirBeam]
-type = ChangeState
-value = 1506
-triggerall = command = "beam"
-triggerall = power >= 250
-trigger1 = statetype = A
-trigger1 = ctrl
-trigger2 = stateno = [1006,1010]
-trigger3 = stateno = [600,640]
-trigger3 = movehit
-
-;---------------------------------------------------------------------------
 ;Fireball 2
 [State -1, Fireball 2]
 type = ChangeState

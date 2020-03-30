@@ -1260,22 +1260,16 @@ type    = A
 movetype= I
 physics = A
 juggle  = 4
-poweradd= -100
+poweradd= -200
 ctrl = 0
 velset = 0,0
 anim = 1503
-
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = !time && p2bodydist y <= 30
-value = 1502
-elem = 1
 
 [State 0, VarAdd]
 type = VarAdd
 trigger1 = !time
 v = 20
-value = 1
+value = 5
 
 [State 0, VarSet]
 type = VarSet
@@ -1290,60 +1284,29 @@ y = 0
 
 [State 0, Helper]
 type = Helper
-triggerall = anim = 1503
-trigger1 = AnimElem = 2
+trigger1 = AnimElem = 1
 helpertype = normal ;player
 name = "handfx"
 ID = 6001
 stateno = 6001
-pos = 75,-25
+pos = 37,-14
 postype = p1
 ownpal = 0
-size.xscale = .35
-size.yscale = .35
+size.xscale = .3
+size.yscale = .3
 
 [State 0, Helper]
 type = Helper
-triggerall = anim = 1503
-trigger1 = AnimElem = 2
+trigger1 = AnimElem = 1
 helpertype = normal ;player
 name = "fireball"
-ID = 7008
-stateno = 7008
-pos = 75,-25
+ID = 7010
+stateno = 7010
+pos = 37,-14
 postype = p1
 ownpal = 0
-size.xscale = .35
-size.yscale = .35
-
-[State 0, Explod]
-type = Explod
-triggerall = anim = 1502
-trigger1 = AnimElem = 2
-anim = 6000
-ID = 6000
-pos = 80,-53
-postype = p1
-bindtime = 1
-removetime = -2
-scale = .4,.4
-sprpriority = 3
-shadow = 0,0,0
-ownpal = 1
-
-[State 0, Helper]
-type = Helper
-triggerall = anim = 1502
-trigger1 = AnimElem = 2
-helpertype = normal ;player
-name = "fireball"
-ID = 7002
-stateno = 7002
-pos = 80,-53
-postype = p1
-ownpal = 0
-size.xscale = .35
-size.yscale = .35
+size.xscale = .25
+size.yscale = .25
 
 [State 0, CtrlSet]
 type = CtrlSet
@@ -1364,22 +1327,16 @@ type    = A
 movetype= I
 physics = A
 juggle  = 4
-poweradd= -100
+poweradd= -200
 ctrl = 0
 velset = 0,0
 anim = 1504
-
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = !time && p2bodydist y <= 30
-value = 15021
-elem = 1
 
 [State 0, VarAdd]
 type = VarAdd
 trigger1 = !time
 v = 20
-value = 1
+value = 5
 
 [State 0, VarSet]
 type = VarSet
@@ -1394,60 +1351,29 @@ y = 0
 
 [State 0, Helper]
 type = Helper
-triggerall = anim = 1504
 trigger1 = AnimElem = 1
 helpertype = normal ;player
 name = "handfx"
 ID = 6001
 stateno = 6001
-pos = 75,-25
+pos = 37,-14
 postype = p1
 ownpal = 0
-size.xscale = 0.4
-size.yscale = 0.4
+size.xscale = .3
+size.yscale = .3
 
 [State 0, Helper]
 type = Helper
-triggerall = anim = 1504
 trigger1 = AnimElem = 1
 helpertype = normal ;player
 name = "fireball"
-ID = 7008
-stateno = 7008
-pos = 75,-25
+ID = 7010
+stateno = 7010
+pos = 37,-14
 postype = p1
 ownpal = 0
-size.xscale = .4
-size.yscale = .4
-
-[State 0, Explod]
-type = Explod
-triggerall = anim = 15021
-trigger1 = AnimElem = 1
-anim = 6000
-ID = 6000
-pos = 80,-53
-postype = p1
-bindtime = 1
-removetime = -2
-scale = .4,.4
-sprpriority = 3
-shadow = 0,0,0
-ownpal = 1
-
-[State 0, Helper]
-type = Helper
-triggerall = anim = 15021
-trigger1 = AnimElem = 1
-helpertype = normal ;player
-name = "fireball"
-ID = 7002
-stateno = 7002
-pos = 80,-53
-postype = p1
-ownpal = 0
-size.xscale = .4
-size.yscale = .4
+size.xscale = .25
+size.yscale = .25
 
 [State 0, CtrlSet]
 type = CtrlSet
@@ -1531,88 +1457,6 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;Air Beam
-[Statedef 1506]
-type    = A
-movetype= I
-physics = A
-juggle  = 4
-poweradd= -250
-ctrl = 0
-velset = 0,0
-anim = 1506
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Animelemtime(2) >= 0 && animelemtime(3) < 0
-x = -2
-y = 0
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = AnimElem = 2
-value = 1505,0
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = AnimElem = 2
-value = 3,18
-volume = 500
-
-[State 0, Explod]
-type = Explod
-trigger1 = AnimElem = 2
-anim = 7022
-ID = 7022
-pos = 83+31,-54
-postype = p1
-facing = -1
-bindtime = -1
-removetime = 19
-scale = .35,.35
-sprpriority = 3
-removeongethit = 1
-
-[State 0, Explod]
-type = Explod
-trigger1 = animelemtime(2) = 19
-anim = 7000
-ID = 7000
-pos = 70+31,-54
-postype = p1
-facing = -1
-bindtime = -1
-removetime = 12
-scale = .3,.2
-sprpriority = 3
-removeongethit = 1
-
-[State 0, Helper]
-type = Helper
-trigger1 = Animelem = 2
-helpertype = normal
-name = "beam"
-ID = 7025
-stateno = 7025
-pos = 45,-69
-postype = p1
-keyctrl = 1
-size.xscale = .4
-size.yscale = .5
-
-[State 0, CtrlSet]
-type = CtrlSet
-trigger1 = Animelem = 3 && var(3) != 1
-value = 1
-
-[State 0, ChangeState]
-type = ChangeState
-triggerall = var(3) = 1 ; fly
-trigger1 = animelemtime(3) = 0
-value = 1006
-ctrl = 0
-
-;---------------------------------------------------------------------------
 ; Big ball
 [Statedef 1507]
 type    = S
@@ -1678,7 +1522,7 @@ postype = p1
 facing = -1
 bindtime = 1
 removetime = -2
-scale = 0.5,0.5
+scale = 0.25,0.25
 sprpriority = 3
 shadow = 0,0,0
 ownpal = 0
@@ -1694,8 +1538,8 @@ stateno = 7004
 pos = 45,-47
 postype = p1
 ownpal = 0
-size.xscale = 0.5
-size.yscale = 0.5
+size.xscale = 0.25
+size.yscale = 0.25
 
 [State 210, 5]
 type = ChangeState
@@ -1731,21 +1575,9 @@ channel = 1
 
 [State 0, ChangeAnim]
 type = ChangeAnim
-trigger1 = command != "hold_c" && animelemtime(2) < 0 && p2bodydist y >= 30
-value = 15081
-elem = 2
-
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = command != "hold_c" && animelemtime(2) < 0 && p2bodydist y < 30
+trigger1 = command != "hold_c" && animelemtime(2) < 0
 value = 1508
 elem = 2
-
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = !time && p2bodydist y >= 30
-value = 15081
-elem = 1
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -1820,46 +1652,14 @@ type = RemoveExplod
 trigger1 = AnimElem = 2
 ID = 7010
 
-[State 0, Explod]
-type = Explod
-triggerall = anim = 1508
-trigger1 = AnimElem = 2
-anim = 7000
-ID = 7000
-pos = 88,-50
-postype = p1
-facing = -1
-bindtime = 1
-removetime = -2
-scale = 0.25+var(21)*0.015,0.25+var(21)*0.015
-sprpriority = 3
-shadow = 0,0,0
-ownpal = 0
-removeongethit = 0
-
 [State 0, Helper]
 type = Helper
-triggerall = anim = 1508
-trigger1 = AnimElem = 2
-helpertype = normal ;player
-name = "bigfireball"
-ID = 7004
-stateno = 7004
-pos = 88,-50
-postype = p1
-ownpal = 0
-size.xscale = 0.3+var(21)*0.015
-size.yscale = 0.3+var(21)*0.015
-
-[State 0, Helper]
-type = Helper
-triggerall = anim = 15081
 trigger1 = AnimElem = 2
 helpertype = normal ;player
 name = "bigfireball"
 ID = 7010
 stateno = 7010
-pos = 75,-25
+pos = 37,-12
 postype = p1
 ownpal = 0
 size.xscale = 0.4+var(21)*0.015
@@ -1867,13 +1667,12 @@ size.yscale = 0.4+var(21)*0.015
 
 [State 0, Helper]
 type = Helper
-triggerall = anim = 15081
 trigger1 = AnimElem = 2
 helpertype = normal ;player
 name = "bigfbhandfx"
 ID = 6002
 stateno = 6002
-pos = 75+var(21),-25+var(21)
+pos = 37+var(21),-12+var(21)
 postype = p1
 ownpal = 0
 size.xscale = 0.25+var(21)*0.015
@@ -4085,18 +3884,18 @@ Trans = Add1
 
 [State 0, MakeDust]
 type = MakeDust
-trigger1 = Time < 30 && pos y = 0
+trigger1 = animelemtime(2) >= 0 && pos y = 0
 pos = 0,0
 spacing = 3
 
 [State 0, PosAdd]
 type = velset
-trigger1 = Time < 30
-x = 8
+trigger1 = animelemtime(2) >= 0
+x = 15
 
 [State 0, PosAdd]
 type = velset
-trigger1 = movehit && hitcount >= 6
+trigger1 = movehit
 x = 0
 
 [State 0, ScreenBound]
@@ -4106,27 +3905,56 @@ value = 0
 
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = time = 0
+trigger1 = Animelem = 2
 value = 3,0
 volume = 500
 
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = Time = 0
+trigger1 = Animelem = 2
 value = 0,1
 
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = AnimElem = 1
+trigger1 = Animelem = 2
 value = 105,0
+
+[State 0, Explod]
+type = Explod
+trigger1 = Animelem = 2 && pos y = 0
+anim = 7001
+ID = 7001
+pos = -5,0
+postype = p1
+bindtime = 1
+removetime = -2
+scale = 1,1
+sprpriority = -2
+shadow = 0,0,0
+ownpal = 1
+
+[State 0, Explod]
+type = Explod
+trigger1 = Animelem = 2 && pos y = 0
+anim = 7001
+ID = 7001
+pos = -5,0
+postype = p1
+bindtime = 1
+vfacing = -1
+removetime = -2
+scale = 1,1
+sprpriority = 2
+shadow = 0,0,0
+ownpal = 1
 
 [State 0, Explod]
 type = Explod
 trigger1 = Animelem = 2
 anim = 7040
 ID = 7040
-pos = 43,-50
-postype = p1  ;p2,front,back,left,right
+pos = 35,-32
+postype = p1
 bindtime = -1
 removetime = -2
 scale = 1.2,1.2
@@ -4154,10 +3982,11 @@ air.velocity = -20,-1
 envshake.time = 20
 envshake.freq = 80
 envshake.ampl = ifelse(Random <500,-4,4)
+fall = 1
 
 [State 0]
 type = Helper
-trigger1 = MoveHit
+trigger1 = movehit
 helpertype = Normal
 ID = 8000
 stateno = 8000
