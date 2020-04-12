@@ -1,0 +1,84 @@
+; System
+; 200 - 699 for normal punches and kicks
+; 800 - 899 for grab attacks
+; 1006 - 1011 flor fly mode
+; 1110 - 1118 for fly teleport combos
+; 1120 - 1125 for fly forward combos
+; 1200 - 1299 for special attacks
+; 1500 - 1599 for normal energy attacks
+; 3000 - 3499 for super attacks
+; 3500 - 3549 for hyper attacks
+; 3900 - 3999 for special modes (like ozaru)
+; 6000 - 8999 for helpers
+
+;---------------------- Integer variable list ----------------------
+
+; var(1):= -1 - Don't remove the following line. It's required by the CMD standard.
+; var(3):= -2, 771 - Zanzoken End, 1503 - Air Fireball, 1504 - Air Fireball 2
+; var(5):= 7014 - Ozaru big Fireball, 7510 - Super Ball, 3510 - Super Ball, 3911 - Fireball Ozaru Mode
+; var(8):= 7001 - TailDisk, 7510 - Super Ball
+; var(10):= 3911 - Fireball Ozaru Mode
+; var(11):= -2
+; var(15):= 5300 - Tired
+; var(16):= -2, 252 - Strong back kick, 255 - Run Fwd Embestida, 1110 - COMBO FLY KICK A, 1111 - COMBO FLY KICK B, 1112 - COMBO FLY PUNCH X, 1113 - COMBO FLY PUNCH Y, 1120 - Fly fwd punch x, 1121 - Fly fwd punch y, 1122 - Fly fwd punch a, 1123 - Fly fwd punch b
+; var(17):= 3900 - Entering Ozaru Mode, 3904 - Jump Ozaru Mode, 3913 - Super Jump Ozaru Mode
+; var(20):= -2, 1500 - Fireball, 1501 - Fireball 2, 1503 - Air Fireball, 1504 - Air Fireball 2
+; var(21):= 7500 - Super Beam, 7501 - Super Beam Up, 7502 - Super Beam Down, 7511 - Super Ball Explosion, 7550 - Super Beam Down (Hyper Solar Flaire), 1507 - Big ball, 1508 - Air Big ball, 1510 - Blow up ground, 1203 - Taladro Kick, 1204 - Flying Kick, 3004 - Super Blow up ground, 3505 - Solar Flaires, 3510 - Super Ball, 3550 - Hyper Solar Flaires Down
+; var(27):= 7551 - Screen Burn FX (Hyper Solar Flaire)
+; var(40):= 3900 - Entering Ozaru Mode, 3910 - Finish Ozaru
+; var(41):= 8015 - Body Ozaru, 8016 - Body Ozaru Loosing Life, -2
+; var(42):= 7037 - Start Luna, 7039 - Luna Loosing Life
+; var(47):= 7500 - Super Beam, -2
+; var(49):= -1 - Don't remove the following line. It's required by the CMD standard.
+
+;--------------------- Float Variable List ----------------------
+
+[Data]
+life = 1000
+attack = 100
+defence = 100
+fall.defence_up = 50
+liedown.time = 60
+airjuggle = 15
+sparkno = 2
+guard.sparkno = 40
+KO.echo = 0
+IntPersistIndex = 60
+FloatPersistIndex = 40
+
+[Size]
+xscale = 1
+yscale = 1
+ground.back = 15
+ground.front = 16
+air.back = 12
+air.front = 12
+height = 60
+attack.dist = 160
+proj.attack.dist = 90
+proj.doscale = 0
+head.pos = -5, -90
+mid.pos = -5, -60
+shadowoffset = 0
+draw.offset = 0,0
+
+[Velocity]
+walk.fwd  = 4.0
+walk.back = -4.0
+run.fwd  = 9, 0
+run.back = -6,-3.8
+jump.neu = 0,-8.4
+jump.back = -3.5
+jump.fwd = 3.5
+runjump.back = -2.55,-8.1
+runjump.fwd = 4,-8.1
+airjump.neu = 0,-8.1
+airjump.back = -2.55
+airjump.fwd = 2.5
+
+[Movement]
+airjump.num = 0
+airjump.height = 35
+yaccel = .44
+stand.friction = .85
+crouch.friction = .82

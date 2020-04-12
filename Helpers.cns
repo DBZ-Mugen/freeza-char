@@ -77,13 +77,13 @@ flag = noshadow
 
 [State 0, AngleDraw]
 type = AngleDraw
-trigger1 = parent, stateno = 3500
+trigger1 = 1
 value = 45*5
 
-[State 0, AngleDraw]
-type = AngleDraw
-trigger1 = parent, stateno = 3501
-value = -45*5
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 40,-90
 
 [State 0, Trans]
 type = Trans
@@ -116,13 +116,13 @@ flag = noshadow
 
 [State 0, AngleDraw]
 type = AngleDraw
-trigger1 = parent, stateno = 3500
+trigger1 = 1
 value = 45*5
 
-[State 0, AngleDraw]
-type = AngleDraw
-trigger1 = parent, stateno = 3501
-value = -45*5
+[State 0, BindToParent]
+type = BindToParent
+trigger1 = 1
+pos = 48,-98
 
 [State 0, Trans]
 type = Trans
@@ -1647,7 +1647,7 @@ ignorehitpause = 1
 ;---------------------------------------------------
 ;---------------------------------------------------
 ; Ozaru big Fireball
-[Statedef 7014]
+Statedef 7014]
 type = A
 movetype = A
 physics = N
@@ -1755,7 +1755,7 @@ value = 7015
 ;=============================================================================|
 ;=============================================================================|
 ; Ozaru big Fireball Explosion
-[Statedef 7015]
+Statedef 7015]
 type = A
 anim = 7999
 sprpriority = 3
@@ -2112,7 +2112,7 @@ trigger2 = parent, stateno != [1505,1506]
 
 ;---------------------------------------------------------------
 ; Start Luna
-[Statedef 7037]
+Statedef 7037]
 type = S
 anim = 7037
 sprpriority = 7
@@ -2169,7 +2169,7 @@ ctrl = 0
 
 ;---------------------------------------------------------------
 ; Luna
-[Statedef 7038]
+tatedef 7038]
 type = S
 anim = 7038
 sprpriority = 7
@@ -2199,7 +2199,7 @@ ctrl = 0
 
 ;---------------------------------------------------------------------------
 ; Luna Loosing Life
-[Statedef 7039]
+Statedef 7039]
 type    = S
 movetype= H
 juggle  = 5
@@ -2232,7 +2232,7 @@ ctrl = 0
 ;=======================================================|
 ;=======================================================|
 ;Luna Explosion
-[Statedef 7040]
+Statedef 7040]
 type = A
 anim = 7999
 sprpriority = 3
@@ -2936,7 +2936,7 @@ movetype = A
 physics = N
 juggle = 0
 ctrl = 0
-anim = ifelse(parent, prevstateno = 3505, 75001, 7500)
+anim = 7500
 sprpriority = 3
 
 [State 0, EnvShake]
@@ -3054,14 +3054,7 @@ persistent = 1
 type = BindToParent
 trigger1 = parent, stateno = 3500
 time = 1
-pos = 40,-66
-ignorehitpause = 1
-
-[State 0, BindToParent]
-type = BindToParent
-trigger1 = parent, stateno = 3501
-time = 1
-pos = 40+36,-66+16
+pos = 25,-50
 ignorehitpause = 1
 
 [State 0, HitDef]
@@ -3105,7 +3098,6 @@ trigger1 = AnimTime = 0
 trigger2 = parent, stateno != 3500
 trigger2 = parent, stateno != 3501
 trigger2 = parent, stateno != 3505
-trigger2 = parent, stateno != 3912
 
 ;---------------------------------------------------------------
 ;Super Beam Up
@@ -3170,16 +3162,9 @@ persistent = 1
 
 [State 0, BindToParent]
 type = BindToParent
-trigger1 = parent, stateno = 3500
+trigger1 = 1
 time = 1
-pos = 40,-79
-ignorehitpause = 1
-
-[State 0, BindToParent]
-type = BindToParent
-trigger1 = parent, stateno = 3501
-time = 1
-pos = 40+36,-66+16
+pos = 13,-58
 ignorehitpause = 1
 
 [State 0, HitDef]
@@ -3192,7 +3177,7 @@ guardflag = MA
 animtype = hard
 air.animtype = hard
 priority = 4,Hit
-damage = ifelse(root,stateno = 3505,3,4),0
+damage = 3,0
 pausetime = 0,0
 sparkno = -1
 guard.sparkno = -1
@@ -4163,7 +4148,7 @@ ignorehitpause = 1
 ;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
 ; Body Ozaru
-[Statedef 8015]
+Statedef 8015]
 type    = S
 movetype= I
 physics = S
@@ -4198,7 +4183,7 @@ trigger1 = root, var(40) = 0
 
 ;---------------------------------------------------------------------------
 ; Body Ozaru Loosing Life
-[Statedef 8016]
+Statedef 8016]
 type    = S
 movetype= H
 juggle  = 5

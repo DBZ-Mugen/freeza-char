@@ -1,0 +1,29 @@
+;***************************************************************************;
+;******************* Created in Fighter Factory Ultimate *******************;
+;*******************      http://www.virtualltek.com     *******************;
+;***************************************************************************;
+
+[Info]
+name = "Frieza"
+displayname = "Frieza"
+versiondate = 01,01,2020
+mugenversion = 1.1
+author = "Sawady"
+pal.defaults = 1
+
+[Files]
+sprite = frieza.sff
+anim = frieza.air
+sound = frieza.snd
+cmd = frieza.cmd
+cns = frieza.cns
+stcommon = common1.cns
+st = Basico.cns
+st1 = Moves.cns
+st2 = Helpers.cns
+st3 = Specials.cns
+pal1 = frieza.act
+
+[Arcade]
+intro.storyboard = intro.def
+ending.storyboard = ending.def
