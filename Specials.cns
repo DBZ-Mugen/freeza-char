@@ -880,7 +880,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; SuperBeam
+; Super Beam
 [Statedef 3500]
 type    = S
 movetype= I
@@ -897,7 +897,7 @@ elem = 1
 
 [State 0, PalFX]
 type = PalFX
-trigger1 = AnimElem = 1
+trigger1 = anim = 3500 && AnimElem = 1
 time = 15
 add = 70,0,0
 mul = 256,256,256
@@ -906,7 +906,7 @@ color = 256
 
 [State 3200, superchargehelper]
 type = Helper
-trigger1 = AnimElem = 1
+trigger1 = anim = 3500 && AnimElem = 1
 helpertype = normal
 stateno = 8100
 ID = 8100
@@ -929,24 +929,27 @@ endcmdbuftime = 45
 
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = AnimElem = 1
+trigger1 = anim = 3500 && AnimElem = 1
 value = 3000,0
 channel = 1
 
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = AnimElem = 3
+trigger1 = anim = 3500 && AnimElem = 3
+trigger2 = anim = 3502 && AnimElem = 1
 value = 3500,0
 
 [State 0, PlaySnd]
 type = PlaySnd
-trigger1 = AnimElem = 3
+trigger1 = anim = 3500 && AnimElem = 3
+trigger2 = anim = 3502 && AnimElem = 1
 value = 3,18
 volume = 500
 
 [State 0, Explod]
 type = Explod
-trigger1 = animelemtime(4) < 0 && animelemtime(3) >= 0
+trigger1 = anim = 3500 && animelemtime(4) < 0 && animelemtime(3) >= 0
+trigger2 = anim = 3502 && animelemtime(1) >= 0
 trigger1 = Timemod = 8,0
 anim = 7001
 ID = 7001
@@ -961,7 +964,8 @@ ownpal = 1
 
 [State 0, Explod]
 type = Explod
-trigger1 = animelemtime(4) < 0 && animelemtime(3) >= 0
+trigger1 = anim = 3500 && animelemtime(4) < 0 && animelemtime(3) >= 0
+trigger2 = anim = 3502 && animelemtime(2) < 0 && animelemtime(1) >= 0
 trigger1 = Timemod = 8,0
 anim = 7001
 ID = 7001
@@ -990,9 +994,25 @@ sprpriority = 3
 removeongethit = 1
 ownpal = 1
 
+[State 0, Explod]
+type = Explod
+trigger1 = anim = 3502 && AnimElem = 1
+anim = 7023
+ID = 7023
+pos = 65,-50
+postype = p1
+facing = -1
+bindtime = -1
+removetime = 94
+scale = .4,.5
+sprpriority = 3
+removeongethit = 1
+ownpal = 1
+
 [State 0, PalFX]
 type = PalFX
-trigger1 = AnimElem = 3
+trigger1 = anim = 3500 && AnimElem = 3
+trigger2 = anim = 3502 && AnimElem = 1
 time = 105
 add = 70,35,35
 mul = 256,256,256
@@ -1007,7 +1027,8 @@ ignorehitpause = 1
 
 [State 0, HitBy]
 type = HitBy
-trigger1 = animelemtime(3) >= 0
+trigger1 = anim = 3500 && animelemtime(3) >= 0
+trigger2 = anim = 3502 && animelemtime(1) >= 0
 value = SCA,SA,HA,SP,HP,ST,HT
 time = 1
 
@@ -1018,6 +1039,20 @@ helpertype = normal
 name = "superbeam"
 ID = 7500
 stateno = 7500
+pos = 45,-66
+postype = p1
+keyctrl = 1
+size.xscale = .6
+size.yscale = .7
+ownpal = 1
+
+[State 0, Helper]
+type = Helper
+trigger1 = anim = 3502 && Animelem = 1
+helpertype = normal
+name = "superbeam"
+ID = 7501
+stateno = 7501
 pos = 45,-66
 postype = p1
 keyctrl = 1
@@ -1042,19 +1077,6 @@ ownpal = 1
 
 [State 0, Helper]
 type = Helper
-trigger1 = anim = 3502 && AnimElem = 1
-helpertype = normal ;player
-name = "handfx"
-ID = 6004
-stateno = 6004
-pos = 70,-115
-postype = p1
-ownpal = 1
-size.xscale = 0.4
-size.yscale = 0.5
-
-[State 0, Helper]
-type = Helper
 trigger1 = anim = 3502 && animelemtime(1) = 94
 helpertype = normal ;player
 name = "handfx_finish"
@@ -1066,20 +1088,6 @@ ownpal = 1
 size.xscale = 0.4
 size.yscale = 0.5
 
-[State 0, Helper]
-type = Helper
-trigger1 = anim = 3502 && Animelem = 1
-helpertype = normal
-name = "superbeam"
-ID = 7501
-stateno = 7501
-pos = 45,-66
-postype = p1
-keyctrl = 1
-size.xscale = .6
-size.yscale = .7
-ownpal = 1
-
 [State 400, 4]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -1087,7 +1095,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; SuperAirBeam
+; Super Beam Air
 [Statedef 3501]
 type    = A
 movetype= I

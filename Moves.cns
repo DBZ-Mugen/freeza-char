@@ -4689,7 +4689,7 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; Fists
-[Statedef 1207]
+Statedef 1207]
 type    = S
 movetype= A
 physics = S
@@ -4812,7 +4812,7 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; Kick Fists
-[Statedef 1208]
+Statedef 1208]
 type    = S
 movetype= A
 physics = S
