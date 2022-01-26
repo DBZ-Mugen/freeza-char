@@ -576,8 +576,6 @@ trigger1 = statetype = S
 trigger1 = ctrl
 trigger2 = stateno = [200,699]
 trigger2 = movehit
-trigger3 = stateno = 1207 || stateno = 1208
-trigger3 = movehit
 
 ;airhandexplo
 [State -1, airhandexplo]
@@ -751,12 +749,10 @@ trigger2 = stateno = [210,250]
 trigger2 = movehit
 trigger3 = stateno = [1200,1204]
 trigger3 = movehit
-trigger4 = stateno = [1207,1209]
+trigger4 = stateno = [600,640]
 trigger4 = movehit
-trigger5 = stateno = [600,640]
-trigger5 = movehit
-trigger6 = stateno = [1006,1010]
-trigger7 = stateno = 1210 && hitcount < 5 && movehit
+trigger5 = stateno = [1006,1010]
+trigger6 = stateno = 1210 && hitcount < 5 && movehit
 
 [State 0, coletazos continuacion]
 type = ChangeState
@@ -764,46 +760,6 @@ value = 1210
 triggerall = power >= 500
 triggerall = stateno = 1210
 trigger1 = command = "a" && hitcount < 5 && animelemtime(5) >= 0
-
-;nearfists
-[State -1, nearfists]
-type = ChangeState
-value = 1209
-triggerall = power >= 500
-triggerall = command = "nearfists"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = stateno = [210,250]
-trigger2 = movehit
-trigger3 = stateno = 1207 || stateno = 1208
-trigger3 = movehit
-
-;kickfists
-[State -1, kickfists]
-type = ChangeState
-value = 1208
-triggerall = power >= 200
-triggerall = command = "kickfists"
-trigger1 = statetype = S || statetype = A
-trigger1 = ctrl
-trigger2 = stateno = [210,250]
-trigger2 = movehit
-trigger3 = stateno = 1207
-trigger3 = movehit
-trigger3 = time >= 20
-trigger4 = stateno = [600,640]
-trigger4 = movehit
-
-;fists
-[State -1, Fists]
-type = ChangeState
-value = 1207
-triggerall = power >= 200
-triggerall = command = "fists"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = stateno = [210,250]
-trigger2 = movehit
 
 ;---------------------------------------------------------------------------
 ;Agarre
