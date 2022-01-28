@@ -103,11 +103,6 @@ name = "superbeam"
 command = D, F, D, F, c
 time = 25
 
-[Command]
-name = "handexplo"
-command = D, F, D, B, y
-time = 25
-
 ;-| super attacks |-----------------------------------------------------
 
 [Command]
@@ -115,17 +110,7 @@ name = "superembestida"
 command = D, F, D, F, y
 time = 25
 
-[Command]
-name = "superfists"
-command = D, B, D, F, y
-time = 25
-
 ;-| energy attacks |-----------------------------------------------------
-
-[Command]
-name = "taildisk"
-command = F, B, F, c
-time = 25
 
 [Command]
 name = "beam"
@@ -137,12 +122,7 @@ command = D, B, c
 
 [Command]
 name = "blowupground"
-command = B, D, F, y
-time = 25
-
-[Command]
-name = "explofinish"
-command = F, D, B, c
+command = D, B, y
 time = 25
 
 ;-| normal attacks |-----------------------------------------------------
@@ -175,35 +155,11 @@ name = "embestida"
 command = F, B, F, y
 time = 25
 
-[Command]
-name = "taladrokick"
-command = F, B, F, b
-time = 25
-
-[Command]
-name = "flykick"
-command = D, B, a
-time = 15
-
-[Command]
-name = "agarre_aereo_up"
-command = F, D, B, x
-time = 25
-
-[Command]
-name = "agarre_aereo_fwd"
-command = F, D, B, y
-time = 25
-
 ;-| combo modes start |-----------------------------------------------------
 
 [Command]
-name = "dashpunch"
-command = y+z
-
-[Command]
 name = "teleporthit"
-command = b+z
+command = y+z
 
 ;-| double tap |-----------------------------------------------------------
 [Command]
@@ -386,119 +342,6 @@ var(49) = 1
 
 ;===========================================================================
 ;===========================================================================
-; special Modes
-
-; ;Ozaru Mode
-; [State -1, Ozaru Mode]
-; type = ChangeState
-; value = 3900
-; triggerall = power = powerMax && command = "c" && command = "start" && var(40) != 1
-; trigger1 = statetype = S
-; trigger1 = ctrl
-
-;Finish Ozaru Mode
-[State -1, Finish Ozaru Mode]
-type = ChangeState
-value = 3910
-triggerall = stateno != 3900
-trigger1 = command = "c" && command = "start" && var(40) = 1
-
-;Super Jump Ozaru Mode
-[State -1, Super Jump Ozaru Mode]
-type = ChangeState
-value = 3913
-triggerall = stateno = 3901
-trigger1 = command = "superjump"
-
-;Super Jump Ozaru Mode
-[State -1, Jump Ozaru Mode]
-type = ChangeState
-value = 3913
-triggerall = stateno = 3901
-trigger1 = command = "superjumpF"
-
-;Super Jump Ozaru Mode
-[State -1, Jump Ozaru Mode]
-type = ChangeState
-value = 3913
-triggerall = stateno = 3901
-trigger1 = command = "superjumpB"
-
-;Jump Ozaru Mode
-[State -1, Jump Ozaru Mode]
-type = ChangeState
-value = 3904
-triggerall = stateno = 3901
-trigger1 = command = "holdup"
-
-;Walk Back Ozaru Mode
-[State -1, Turn Ozaru Mode]
-type = ChangeState
-value = 3902
-triggerall = stateno = 3901
-trigger1 = command = "holdfwd" && command != "holdup"
-
-;Turn Ozaru Mode
-[State -1, Walk Ozaru Mode]
-type = ChangeState
-value = 3903
-triggerall = stateno = 3901
-trigger1 = command = "holdback"
-
-;Punch x+y Ozaru Mode
-[State -1, Punch x+y Ozaru Mode]
-type = ChangeState
-value = 3914
-triggerall = stateno = [3901,3903]
-trigger1 = command = "y" && command = "x"
-
-;Punch x Ozaru Mode
-[State -1, Punch x Ozaru Mode]
-type = ChangeState
-value = 3906
-triggerall = stateno = [3901,3903]
-trigger1 = command = "x"
-
-;Punch y Ozaru Mode
-[State -1, Punch y Ozaru Mode]
-type = ChangeState
-value = 3907
-triggerall = stateno = [3901,3903]
-trigger1 = command = "y"
-
-;Punch a Ozaru Mode
-[State -1, Punch a Ozaru Mode]
-type = ChangeState
-value = 3908
-triggerall = stateno = [3901,3903]
-trigger1 = command = "a"
-
-;Punch b Ozaru Mode
-[State -1, Punch b Ozaru Mode]
-type = ChangeState
-value = 3909
-triggerall = stateno = [3901,3903]
-trigger1 = command = "b"
-
-;beam ozaru
-[State -1, Beam Ozaru Mode]
-type = ChangeState
-value = 3912
-triggerall = power >= 1000
-triggerall = stateno = [3901,3903]
-trigger1 = command = "beam"
-
-;fireball Ozaru
-[State -1, Fireball Ozaru Mode]
-type = ChangeState
-value = 3911
-triggerall = power >= 250
-triggerall = stateno = [3901,3903]
-trigger1 = command = "c"
-
-
-;===========================================================================
-;===========================================================================
 ; super energy moves
 
 ;hypersolarflairesdown
@@ -566,35 +409,6 @@ trigger1 = ctrl
 trigger2 = stateno = [200,699]
 trigger2 = movehit
 
-;superfists
-[State -1, superfists]
-type = ChangeState
-value = 3002
-triggerall = power >= 500
-triggerall = command = "superfists"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = stateno = [200,699]
-trigger2 = movehit
-
-;airhandexplo
-[State -1, airhandexplo]
-type = ChangeState
-value = 3001
-triggerall = power >= 1500
-triggerall = command = "handexplo"
-trigger1 = statetype = A
-trigger1 = ctrl
-
-;handexplo
-[State -1, handexplo]
-type = ChangeState
-value = 3000
-triggerall = power >= 1500
-triggerall = command = "handexplo"
-trigger1 = statetype = S
-trigger1 = ctrl
-
 ;===========================================================================
 ;===========================================================================
 ; energy moves
@@ -611,18 +425,6 @@ trigger2 = stateno = [1006,1010]
 trigger3 = movetype = H && gethitvar(hitcount) <= 2
 
 ;---------------------------------------------------------------------------
-;taildisk
-[State -1, taildisk]
-type = ChangeState
-value = 1511
-triggerall = command = "taildisk"
-triggerall = power >= 500
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = stateno = [210,250]
-trigger2 = movehit
-
-;---------------------------------------------------------------------------
 ;blowupground
 [State -1, blowupground]
 type = ChangeState
@@ -633,31 +435,6 @@ trigger1 = statetype = S
 trigger1 = ctrl
 trigger2 = stateno = [210,250]
 trigger2 = movehit
-
-;---------------------------------------------------------------------------
-;explofinish
-[State -1, explofinish]
-type = ChangeState
-value = 1509
-triggerall = command = "explofinish"
-triggerall = power >= 500
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger1 = p2movetype = H
-trigger1 = p2dist y <= -40
-
-;---------------------------------------------------------------------------
-;Air big ball
-[State -1, Air big ball]
-type = ChangeState
-value = 1508
-triggerall = command = "bigball"
-triggerall = power >= 500
-trigger1 = statetype = A
-trigger1 = ctrl
-trigger2 = stateno = [1006,1011]
-trigger3 = stateno = [600,640]
-trigger3 = movehit
 
 ;---------------------------------------------------------------------------
 ;Big Ball
@@ -803,36 +580,6 @@ trigger1 = ctrl
 trigger2 = stateno = [200,699]
 trigger2 = movehit
 value = 1202
-
-[State -1, taladrokick]
-type = ChangeState
-triggerall = command = "taladrokick"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = stateno = [200,699]
-trigger2 = movehit
-value = 1203
-
-[State -1, flykick]
-type = ChangeState
-triggerall = command = "flykick"
-triggerall = stateno != 1204
-trigger1 = ctrl
-trigger2 = stateno = [200,699]
-trigger2 = movehit
-value = 1204
-
-[State -1, agarre_aereo_up]
-type = ChangeState
-triggerall = command = "agarre_aereo_up"
-trigger1 = ctrl
-value = 1205
-
-[State -1, agarre_aereo_fwd]
-type = ChangeState
-triggerall = command = "agarre_aereo_fwd"
-trigger1 = ctrl
-value = 1206
 
 ;===========================================================================
 ; Basic Moves
@@ -1038,54 +785,6 @@ trigger2 = stateno = [1200,1299] ; normal attacks
 trigger2 = stateno != 1205 ; broken here
 trigger2 = stateno != 1206 ; broken here
 trigger3 = stateno = [1120,1123] ; fly forward combos
-
-;Fly Fwd Punch
-[State -1, Fly Fwd Punch]
-type = ChangeState
-value = 255
-triggerall = command = "dashpunch"
-triggerall = var(16) < 10
-triggerall = stateno != 255
-trigger1 = ctrl
-trigger1 = statetype = S
-trigger2 = stateno = [200,699] ; normal punches & kicks
-trigger2 = movehit
-
-;Back Strong Kick2
-[State -1, COMBO FLY PUNCH A]
-type = ChangeState
-value = 1110
-triggerall = command = "a"
-trigger1 = stateno = 252 && movehit
-trigger2 = stateno = [1110,1114]
-trigger2 = movehit && var(16) < 5 && Time = [12,30]
-
-;Back Strong Kick
-[State -1, COMBO FLY PUNCH B]
-type = ChangeState
-value = 1111
-triggerall = command = "b"
-trigger1 = stateno = 252 && movehit
-trigger2 = stateno = [1110,1114]
-trigger2 = movehit && var(16) < 5 && Time = [12,30]
-
-;Fly combo punch
-[State -1, COMBO FLY PUNCH X]
-type = ChangeState
-value = 1112
-triggerall = command = "x"
-trigger1 = stateno = 252 && movehit
-trigger2 = stateno = [1110,1114]
-trigger2 = movehit && var(16) < 5 && Time = [12,30]
-
-;Fly combo punch2
-[State -1, COMBO FLY PUNCH Y]
-type = ChangeState
-value = 1113
-triggerall = command = "y"
-trigger1 = stateno = 252 && movehit
-trigger2 = stateno = [1110,1114]
-trigger2 = movehit && var(16) < 5 && Time = [12,30]
 
 ;========= FINAL AIR MOVES ============================
 
