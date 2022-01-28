@@ -1974,7 +1974,7 @@ type = HitDef
 trigger1 = AnimElem = 2
 attr = S, NA
 animtype  = Hard
-damage    = 40
+damage    = 100
 guardflag = MA
 pausetime = 12,12
 sparkno = -1

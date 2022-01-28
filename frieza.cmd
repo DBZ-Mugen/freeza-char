@@ -816,6 +816,8 @@ triggerall = command = "b"
 triggerall = command != "holddown"
 triggerall = movehit
 trigger1 = stateno = 200
+trigger2 = stateno = 230
+trigger3 = stateno = 240
 
 [State -1, Standing Punch Continue fwd 1]
 type = ChangeState
@@ -824,6 +826,14 @@ triggerall = command = "b"
 trigger1 = command = "holdfwd"
 trigger1 = movehit
 trigger1 = stateno = 210
+
+[State -1, Standing Punch Continue fwd 1]
+type = ChangeState
+value = 1202
+triggerall = command = "b"
+trigger1 = command = "holdfwd"
+trigger1 = movehit
+trigger1 = stateno = 211
 
 ;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
@@ -834,6 +844,8 @@ value = 240
 triggerall = command = "a"
 triggerall = movehit
 trigger1 = stateno = 230
+trigger2 = stateno = 200
+trigger3 = stateno = 210
 
 [State -1, Standing Kick fwd 1]
 type = ChangeState
