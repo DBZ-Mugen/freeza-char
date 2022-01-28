@@ -74,7 +74,7 @@ time = 1
 ;-| super energy attacks |-----------------------------------------------------
 
 [Command]
-name = "hypersolarflairesdown"
+name = "hyperball"
 command = D, F, D, B, c
 time = 30
 
@@ -83,9 +83,9 @@ name = "superbeam"
 command = D, F, D, F, c
 time = 25
 
-[Command]
-name = "superblowupground"
-command = D, B, D, B, y
+[Command] ; in air
+name = "superbeam"
+command = D, F, D, F, c
 time = 25
 
 [Command]
@@ -94,20 +94,20 @@ command = D, B, D, B, c
 time = 25
 
 [Command]
-name = "solarflaires"
+name = "trap"
 command = D, B, D, F, c
-time = 25
-
-[Command] ; in air
-name = "superbeam"
-command = D, F, D, F, c
 time = 25
 
 ;-| super attacks |-----------------------------------------------------
 
 [Command]
+name = "superblowupground"
+command = D, B, D, B, b
+time = 25
+
+[Command]
 name = "superembestida"
-command = D, F, D, F, y
+command = D, F, D, F, b
 time = 25
 
 ;-| energy attacks |-----------------------------------------------------
@@ -122,8 +122,7 @@ command = D, B, c
 
 [Command]
 name = "blowupground"
-command = D, B, y
-time = 25
+command = D, B, b
 
 ;-| normal attacks |-----------------------------------------------------
 
@@ -131,35 +130,15 @@ time = 25
 name = "coletazos"
 command = D, F, a
 
-[Command] ; in air
-name = "nearfists"
-command = B, D, B, y
-time = 20
-
-[Command]
-name = "kickfists"
-command = b, b
-time = 10
-
-[Command]
-name = "fists"
-command = y, y
-time = 10
-
 [Command]
 name = "downkick"
-command = D, F, b
-
-[Command]
-name = "embestida"
-command = F, B, F, y
-time = 25
+command = D, F, a
 
 ;-| combo modes start |-----------------------------------------------------
 
 [Command]
 name = "teleporthit"
-command = y+z
+command = z
 
 ;-| double tap |-----------------------------------------------------------
 [Command]
@@ -344,12 +323,12 @@ var(49) = 1
 ;===========================================================================
 ; super energy moves
 
-;hypersolarflairesdown
+;hyperball
 [State -1, hypersolarflairesdown]
 type = ChangeState
 value = 3550
 triggerall = power >= 3000
-triggerall = command = "hypersolarflairesdown"
+triggerall = command = "hyperball"
 trigger1 = statetype = S || statetype = A
 trigger1 = ctrl
 
@@ -363,15 +342,15 @@ trigger1 = statetype = A || statetype = S
 trigger1 = ctrl
 
 ;solarflaires
-[State -1, solarflaires]
+[State -1, trap]
 type = ChangeState
 value = 3505
 triggerall = power >= 2500
-triggerall = command = "solarflaires"
+triggerall = command = "trap"
 trigger1 = statetype = A || statetype = S
 trigger1 = ctrl
 
-;superairbeam
+;super air beam
 [State -1, superairbeam]
 type = ChangeState
 value = 3501
@@ -380,7 +359,7 @@ triggerall = command = "superbeam"
 trigger1 = statetype = A
 trigger1 = ctrl
 
-;superbeam
+;super beam
 [State -1, superbeam]
 type = ChangeState
 value = 3500
@@ -543,7 +522,7 @@ trigger1 = command = "a" && hitcount < 5 && animelemtime(5) >= 0
 [State -1, Agarre Pi�a Estomago]
 type = ChangeState
 value = 800
-triggerall = command = "x" && command = "y"
+triggerall = command = "a" && command = "b"
 triggerall = command = "holdfwd"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -562,23 +541,15 @@ trigger2 = movehit
 
 [State -1, Run Down kick]
 type = changestate
-triggerall = command = "b" && stateno = 100 && pos y = 0
+triggerall = command = "a" && stateno = 100 && pos y = 0
 trigger1 = ctrl && statetype = S
 value = 1201
 
 [State -1, Embestida on run]
 type = ChangeState
-triggerall = command = "x" && command = "y"
+triggerall = command = "b"
 trigger1 = stateno = 100 || stateno = 1000 || stateno = 1007
 trigger1 = ctrl
-value = 1202
-
-[State -1, Embestida]
-type = ChangeState
-triggerall = command = "embestida"
-trigger1 = ctrl
-trigger2 = stateno = [200,699]
-trigger2 = movehit
 value = 1202
 
 ;===========================================================================
@@ -712,7 +683,7 @@ trigger1 = ctrl = 1
 value = 55
 
 [State -1, SuperjumpF]
-type=changestate
+type = changestate
 triggerall = command = "superjumpF" && statetype != A
 trigger1 = ctrl = 1
 value = 57
@@ -771,376 +742,40 @@ trigger1 = ctrl
 
 ;===========================================================================
 ;===========================================================================
-;Fly Combo attacks
-
-;Teleport Back Strong Kick
-[State -1, Teleport Back Strong Kick]
-type = ChangeState
-value = 252
-triggerall = command = "teleporthit"
-triggerall = movehit
-triggerall = stateno != 252
-trigger1 = stateno = [200,699] ; normal punches & kicks
-trigger2 = stateno = [1200,1299] ; normal attacks
-trigger2 = stateno != 1205 ; broken here
-trigger2 = stateno != 1206 ; broken here
-trigger3 = stateno = [1120,1123] ; fly forward combos
-
-;========= FINAL AIR MOVES ============================
-
-;Final Back Strong Kick
-[State -1, FINAL AIR KICK A]
-type = ChangeState
-value = 1115
-triggerall = command = "a"
-triggerall = stateno = [1110,1114]
-trigger1 = movehit && var(16) = 5 && Time = [12,30]
-
-;Final Down Strong Dkick
-[State -1, FINAL AIR KICK B]
-type = ChangeState
-value = 1116
-triggerall = command = "b"
-triggerall = stateno = [1110,1114]
-trigger1 = movehit && var(16) = 5 && Time = [12,30]
-
-;Mega Punch
-[State -1, FINAL AIR PUNCH X]
-type = ChangeState
-value = 1117
-trigger1 = command = "x"
-triggerall = stateno = [1110,1114]
-trigger1 = movehit && var(16) = 5 && Time = [12,30]
-
-;Final Down Strong Punch
-[State -1, FINAL AIR PUNCH Y]
-type = ChangeState
-value = 1118
-triggerall = command = "y"
-triggerall = stateno = [1110,1114]
-trigger1 = movehit && var(16) = 5 && Time = [12,30]
-
-;Fly Fwd Punch continue x
-[State -1, Fly Fwd Punch x]
-type = ChangeState
-value = 1120
-triggerall = command = "x"
-triggerall = var(16) < 10
-triggerall = movecontact
-trigger1 = stateno = [1120,1123]
-trigger2 = stateno = 255
-
-;Fly Fwd Punch continue y
-[State -1, Fly Fwd Punch y]
-type = ChangeState
-value = 1121
-triggerall = command = "y"
-triggerall = var(16) < 10
-triggerall = movecontact
-trigger1 = stateno = [1120,1123]
-trigger2 = stateno = 255
-
-;Fly Fwd Punch continue a
-[State -1, Fly Fwd Punch a]
-type = ChangeState
-value = 1122
-triggerall = command = "a"
-triggerall = var(16) < 10
-triggerall = movecontact
-trigger1 = stateno = [1120,1123]
-trigger2 = stateno = 255
-
-;Fly Fwd Punch continue b
-[State -1, Fly Fwd Punch b]
-type = ChangeState
-value = 1123
-triggerall = command = "b"
-triggerall = var(16) < 10
-triggerall = movecontact
-trigger1 = stateno = [1120,1123]
-trigger2 = stateno = 255
-
-;Fly Fwd Punch finish
-[State -1, Fly Fwd Punch finish]
-type = ChangeState
-value = 1125
-triggerall = var(16) >= 10
-triggerall = movecontact
-triggerall = command = "a" || command = "b" || command = "x" || command = "y"
-trigger1 = stateno = [1120,1123]
-trigger2 = stateno = 255
-
-;===========================================================================
-;===========================================================================
-;Basic Combos
-
-;Uppercut Continue
-[State -1, Uppercut Continue]
-type = ChangeState
-value = 251
-triggerall = command = "b"
-triggerall = command = "holdback"
-triggerall = stateno != 251
-trigger1 = movehit
-trigger1 = statetype = S
-trigger1 = stateno = [200,699]
-
-;---------------------------------------------------------------------------
-;Jump Strong Punch Down Continue
-[State -1, Jump Strong Punch Down Continue]
-type = ChangeState
-value = 253
-triggerall = command = "b"
-triggerall = command = "holdback"
-triggerall = movehit
-trigger1 = stateno = 251
-
-;---------------------------------------------------------------------------
-;Crouching Light Punch Continue
-[State -1, Crouching Light Punch Continue]
-type = ChangeState
-value = 400
-triggerall = command = "x"
-triggerall = command = "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = 400
-trigger1 = hitcount < 4
-trigger2 = stateno = 200
-trigger2 = hitcount < 4
-
-;---------------------------------------------------------------------------
-;Crouching Light Kick Continue
-[State -1, Crouching Light Kick Continue]
-type = ChangeState
-value = 430
-triggerall = command = "a"
-triggerall = command = "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [400,409]
-trigger2 = stateno = 430
-trigger2 = hitcount < 2
-trigger3 = stateno = [200,249]
-
-;---------------------------------------------------------------------------
-;Crouching Strong Punch Continue
-[State -1, Crouching Strong Punch Continue]
-type = ChangeState
-value = 410
-triggerall = command = "y"
-triggerall = command = "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [400,409]
-trigger2 = stateno = [430,439]
-trigger3 = stateno = [200,249]
-
-;---------------------------------------------------------------------------
-;Crouching Strong Kick Continue
-[State -1, Crouching Strong Kick Continue]
-type = ChangeState
-value = 440
-triggerall = command = "b"
-triggerall = command = "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [400,439]
-trigger2 = stateno = [200,249]
-
-;---------------------------------------------------------------------------
-;Jump Light Punch Continue
-[State -1, Jump Light Punch Continue]
-type = ChangeState
-value = 600
-triggerall = command = "x"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = 600
-trigger1 = hitcount < 4
-
-;---------------------------------------------------------------------------
-;Jump Light Kick Continue
-[State -1, Jump Light Kick Continue]
-type = ChangeState
-value = 630
-triggerall = command = "a"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [600,609]
-trigger2 = stateno = 630
-trigger2 = hitcount < 2
-
-;---------------------------------------------------------------------------
-;Jump Strong Punch Down Continue
-[State -1, Jump Strong Punch Down Continue]
-type = ChangeState
-value = 611
-triggerall = command = "y"
-triggerall = command = "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [600,610]
-trigger2 = stateno = [630,640]
-
-;---------------------------------------------------------------------------
-;Jump Strong Punch Continue
-[State -1, Jump Strong Punch Continue]
-type = ChangeState
-value = 610
-triggerall = command = "y"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [600,609]
-trigger2 = stateno = [630,639]
-
-;---------------------------------------------------------------------------
-;Jump Strong Kick Continue
-[State -1, Jump Strong Kick Continue]
-type = ChangeState
-value = 640
-triggerall = command = "b"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [600,639]
-
-;---------------------------------------------------------------------------
-;Stand Light Punch Continue
-[State -1, Stand Light Punch Continue]
-type = ChangeState
-value = 200
-triggerall = command = "x"
-triggerall = command != "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = 200
-trigger1 = hitcount < 4
-
-;---------------------------------------------------------------------------
-;Stand Light Kick Continue
-[State -1, Stand Light Kick Continue]
-type = ChangeState
-value = 230
-triggerall = command = "a"
-triggerall = command != "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [200,209]
-trigger2 = stateno = 230
-trigger2 = hitcount < 3
-
-;---------------------------------------------------------------------------
-;Standing Strong Kick Continue
-[State -1, Standing Strong Punch 2 Continue]
-type = ChangeState
-value = 211
-triggerall = command = "y"
-trigger1 = command = "holdfwd"
-trigger1 = movetype = I || movecontact
-trigger1 = stateno = 210
-
-[State -1, Trow Forward]
-type = ChangeState
-value = 250
-triggerall = command = "y"
-trigger1 = command = "holdfwd"
-trigger1 = movetype = I || movecontact
-trigger1 = stateno = 211
-
-;---------------------------------------------------------------------------
-;Stand Strong Punch Continue
-[State -1, Stand Strong Punch Continue]
-type = ChangeState
-value = 210
-triggerall = command = "y"
-triggerall = command != "holddown"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [200,209]
-trigger2 = stateno = [230,239]
-
-;---------------------------------------------------------------------------
-;Standing Strong Kick Continue
-[State -1, Standing Strong Kick Continue]
-type = ChangeState
-value = 240
-triggerall = command = "b"
-triggerall = command != "holddown" && command != "holdback"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = [200,239]
-
-;---------------------------------------------------------------------------
-;Standing Strong Kick Continue
-[State -1, Standing Strong Kick Continue]
-type = ChangeState
-value = 241
-triggerall = command = "b"
-triggerall = command = "holdfwd"
-triggerall = movetype = I || movecontact
-trigger1 = stateno = 240
-
-;===========================================================================
-;===========================================================================
 ;Basic Punchs and Kicks
 
 ;---------------------------------------------------------------------------
-;Stand Light Punch
+;Stand Punch
 [State -1, Stand Light Punch]
 type = ChangeState
 value = 200
-triggerall = command = "x"
-triggerall = command != "holddown"
+triggerall = command = "b"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = pos y = 0
-trigger2 = stateno = 771
+trigger1 = stateno != 200
 
 ;---------------------------------------------------------------------------
-;Stand Strong Punch
-[State -1, Stand Strong Punch]
-type = ChangeState
-value = 210
-triggerall = command = "y"
-triggerall = command != "holddown"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = pos y = 0
-trigger2 = stateno = 771
-
-;---------------------------------------------------------------------------
-;Stand Light Kick
+;Stand Kick
 [State -1, Stand Light Kick]
 type = ChangeState
 value = 230
 triggerall = command = "a"
-triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = pos y = 0
-trigger2 = stateno = 771
+trigger1 = stateno != 230
 
 ;---------------------------------------------------------------------------
-;Standing Strong Kick
-[State -1, Standing Strong Kick]
-type = ChangeState
-value = 240
-triggerall = command = "b"
-triggerall = command != "holddown"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = pos y = 0
-trigger2 = stateno = 771
-
-;---------------------------------------------------------------------------
-;Crouching Light Punch
+;Crouching Punch
 [State -1, Crouching Light Punch]
 type = ChangeState
 value = 400
-triggerall = command = "x"
+triggerall = command = "b"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
-;Crouching Strong Punch
-[State -1, Crouching Strong Punch]
-type = ChangeState
-value = 410
-triggerall = command = "y"
-triggerall = command = "holddown"
-trigger1 = statetype = C
-trigger1 = ctrl
-
-;---------------------------------------------------------------------------
-;Crouching Light Kick
+;Crouching Kick
 [State -1, Crouching Light Kick]
 type = ChangeState
 value = 430
@@ -1150,56 +785,136 @@ trigger1 = statetype = C
 trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
-;Crouching Strong Kick
-[State -1, Crouching Strong Kick]
-type = ChangeState
-value = 440
-triggerall = command = "b"
-triggerall = command = "holddown"
-trigger1 = statetype = C
-trigger1 = ctrl
-
-;---------------------------------------------------------------------------
-;Jump Light Punch
+;Jump Punch
 [State -1, Jump Light Punch]
 type = ChangeState
 value = 600
-triggerall = command = "x"
+triggerall = command = "b"
 trigger1 = statetype = A
 trigger1 = ctrl
-trigger2 = pos y < 0
-trigger2 = stateno = 771
 
 ;---------------------------------------------------------------------------
-;Jump Strong Punch
-[State -1, Jump Strong Punch]
-type = ChangeState
-value = 610
-triggerall = command = "y"
-trigger1 = statetype = A
-trigger1 = ctrl
-trigger2 = pos y < 0
-trigger2 = stateno = 771
-
-;---------------------------------------------------------------------------
-;Jump Light Kick
+;Jump Kick
 [State -1, Jump Light Kick]
 type = ChangeState
 value = 630
 triggerall = command = "a"
 trigger1 = statetype = A
 trigger1 = ctrl
-trigger2 = pos y < 0
-trigger2 = stateno = 771
+
+;===========================================================================
+;===========================================================================
+;Combos
 
 ;---------------------------------------------------------------------------
-;Jump Strong Kick
-[State -1, Jump Strong Kick]
+;---------------------------------------------------------------------------+
+
+[State -1, Standing Punch Continue 2]
+type = ChangeState
+value = 210
+triggerall = command = "b"
+triggerall = command != "holddown"
+triggerall = movehit
+trigger1 = stateno = 200
+
+[State -1, Standing Punch Continue fwd 1]
+type = ChangeState
+value = 211
+triggerall = command = "b"
+trigger1 = command = "holdfwd"
+trigger1 = movehit
+trigger1 = stateno = 210
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+
+[State -1, Stand Kick Continue 1]
+type = ChangeState
+value = 240
+triggerall = command = "a"
+triggerall = movehit
+trigger1 = stateno = 230
+
+[State -1, Standing Kick fwd 1]
+type = ChangeState
+value = 241
+triggerall = command = "a"
+triggerall = command = "holdfwd"
+triggerall = movehit
+trigger1 = stateno = 240
+
+[State -1, Standing Kick fwd 2]
+type = ChangeState
+value = 250
+triggerall = command = "a"
+trigger1 = command = "holdfwd"
+trigger1 = movehit
+trigger1 = stateno = 241
+
+[State -1, Standing Kick fwd 3]
+type = ChangeState
+value = 252
+triggerall = command = "a"
+triggerall = command = "holdfwd"
+triggerall = movehit
+trigger1 = stateno = 250
+
+[State -1, Standing Kick back 1]
+type = ChangeState
+value = 251
+triggerall = command = "a"
+triggerall = command = "holdback"
+triggerall = movehit
+trigger1 = stateno = 240
+
+;Jump Strong Punch Down Continue
+[State -1, Standing Kick back 2]
+type = ChangeState
+value = 253
+triggerall = command = "a"
+triggerall = command = "holdback"
+triggerall = movehit
+trigger1 = stateno = 251
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+
+[State -1, Crouching Punch Continue 1]
+type = ChangeState
+value = 410
+triggerall = command = "b"
+triggerall = command = "holddown"
+triggerall = movehit
+trigger1 = stateno = 400
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+
+[State -1, Crouching Kick Continue 1]
+type = ChangeState
+value = 440
+triggerall = command = "a"
+triggerall = command = "holddown"
+triggerall = movehit
+trigger1 = stateno = 430
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+
+[State -1, Jump Punch Continue]
+type = ChangeState
+value = 610
+triggerall = command = "b"
+triggerall = movehit
+trigger1 = stateno = 600
+
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+
+;Jump Kick Continue
+[State -1, Jump Kick Continue]
 type = ChangeState
 value = 640
-triggerall = command = "b"
-trigger1 = statetype = A
-trigger1 = ctrl
-trigger2 = stateno = [1006,1010]
-trigger3 = pos y < 0
-trigger3 = stateno = 771
+triggerall = command = "a"
+triggerall = movehit
+trigger1 = stateno = 630

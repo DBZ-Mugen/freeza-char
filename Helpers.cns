@@ -63,7 +63,7 @@ ignorehitpause = 1
 
 ;=======================================================|
 ;=======================================================|
-; hand up finish super beam fx
+; hand down finish super beam fx
 [Statedef 6003]
 type = A
 anim = 7000
@@ -78,12 +78,12 @@ flag = noshadow
 [State 0, AngleDraw]
 type = AngleDraw
 trigger1 = 1
-value = 45*5
+value = 90+45
 
 [State 0, BindToParent]
 type = BindToParent
 trigger1 = 1
-pos = 40,-90
+pos = 40,-15
 
 [State 0, Trans]
 type = Trans
@@ -102,7 +102,7 @@ ignorehitpause = 1
 
 ;=======================================================|
 ;=======================================================|
-; hand up super beam fx
+; hand down super beam fx
 [Statedef 6004]
 type = A
 anim = 7022
@@ -117,12 +117,12 @@ flag = noshadow
 [State 0, AngleDraw]
 type = AngleDraw
 trigger1 = 1
-value = 45*5
+value = 90+45
 
 [State 0, BindToParent]
 type = BindToParent
 trigger1 = 1
-pos = 48,-98
+pos = 40,0
 
 [State 0, Trans]
 type = Trans
@@ -207,170 +207,6 @@ value = 3
 type = DestroySelf
 trigger1 = Animtime = 0
 ignorehitpause = 1
-
-;=======================================================|
-;=======================================================|
-; TailDisk
-[Statedef 7001]
-type = A
-movetype = A
-juggle = 0
-ctrl = 0
-anim = 7006
-sprpriority = 3
-
-;===========================================
-; VELOCITY
-;===========================================
-
-[State 0, VarSet]
-type = VarSet
-trigger1 = !time && parent, command != "holdup" && parent, command != "holddown" && parent, command != "holdback"
-v = 8
-value = 0
-
-[State 0, VarSet]
-type = VarSet
-trigger1 = !time && parent, command = "holdback"
-v = 8
-value = 1
-
-[State 0, VarSet]
-type = VarSet
-trigger1 = !time && parent, command = "holdup"
-v = 8
-value = 2
-
-[State 0, VarSet]
-type = VarSet
-trigger1 = !time && parent, command = "holddown"
-v = 8
-value = 3
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time = 0 && time <= 50 && var(8) = 0
-x = 10
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time = 0 && var(8) = 1
-x = 10
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time = 50 && var(8) = 1
-x = -10
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time = 0 && var(8)  = 2
-x = 15
-y = -5
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time = 50 && var(8) = 2
-x = -15
-y = 5
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = pos y < 0 && var(8) = 3
-x = 10
-y = 5
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = pos y >= 0 && var(8) = 3 && time < 50
-x = 0
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = pos y >= 0
-y = 0
-
-;===========================================
-; FX
-;===========================================
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = Time = 1
-value = 191,5
-volume = 50
-
-[State 0, AfterImage]
-type = AfterImage
-trigger1 = Time = 0
-time = -1
-time = 36
-length = 15
-palinvertall = 0
-palbright = 0,0,0
-palcontrast = 120,20,20
-paladd = 0,0,0
-timegap = 1
-framegap = 2
-trans = add
-
-[State 0, AssertSpecial]
-type = AssertSpecial
-trigger1 = 1
-flag = noshadow
-persistent = 1
-ignorehitpause = 1
-
-;===========================================
-; PROJECTILE COLLISION
-;===========================================
-
-[State 0, HitOverride]
-type = HitOverride
-trigger1 = 1
-stateno = 7005
-attr = SCA,SA,HA,NP,SP,HP
-slot = 1
-time = -1
-
-[State 0, hitby]
-type = hitby
-trigger1 = 1
-value = SCA,SA,HA,NP,SP,HP
-time = 1
-ignorehitpause = 1
-
-;===========================================
-; HIT
-;===========================================
-
-[State 200,HitDef]
-type = HitDef
-trigger1 = Timemod = 2,0
-attr = S,NP
-animtype = Light
-damage = 5
-guardflag = MA
-hitflag = MAF
-priority = 1,Hit
-sparkno	= -1
-guard.sparkno = -1
-sparkxy = 0,0
-ground.type = Low
-ground.slidetime = 13
-ground.hittime = 50
-ground.velocity = -2
-air.velocity= - 2,-3
-
-;===========================================
-; Destroy
-;===========================================
-
-[State 0, ChangeState]
-type = ChangeState
-trigger1 = time >= 100 && screenpos x != [0,320]
-trigger2 = hitcount >= 5
-value = 7005
 
 ;=======================================================|
 ;=======================================================|
@@ -2811,113 +2647,6 @@ trigger2 = parent, stateno != 3501
 trigger2 = parent, stateno != 3505
 
 ;---------------------------------------------------------------
-;Super Beam Up
-[Statedef 7501]
-type = S
-movetype = A
-physics = N
-juggle = 0
-ctrl = 0
-anim = 7501
-sprpriority = 3
-
-[State 0, EnvShake]
-type = EnvShake
-trigger1 = time % 10 = 0
-time = 10
-freq = 80
-ampl = -3
-
-[State 0, Trans]
-type = Trans
-trigger1 = 1
-trans = add
-ignorehitpause = 1
-
-[State 0, AngleDraw]
-type = AngleDraw
-trigger1 = 1
-value = 45
-ignorehitpause = 1
-
-[State 0, RemoveExplod]
-type = RemoveExplod
-trigger1 = enemy, var(47) = 1000 && parent, var(47) = 1001
-persistent = 0
-
-[State 0, ParentVarSet]
-type = ParentVarSet
-trigger1 = movehit
-v = 21
-value = 1
-
-[State 0, EnvColor]
-type = EnvColor
-trigger1 = !time
-value = 255,255,255
-time = 1
-under = 0
-
-[State 0, hitby]
-type = hitby
-trigger1 = 1
-value = SCA,NP,SP,HP
-time = 1
-ignorehitpause = 1
-
-[State 0, AssertSpecial]
-type = AssertSpecial
-trigger1 = 1
-flag = noshadow
-persistent = 1
-
-[State 0, BindToParent]
-type = BindToParent
-trigger1 = 1
-time = 1
-pos = 13,-58
-ignorehitpause = 1
-
-[State 0, HitDef]
-type = HitDef
-trigger1 = Time >= 0
-trigger1 = Timemod = 2,0
-attr = SCA, SP
-hitflag = MAF
-guardflag = MA
-animtype = hard
-air.animtype = hard
-priority = 4,Hit
-damage = 3,0
-pausetime = 0,0
-sparkno = -1
-guard.sparkno = -1
-guardsound = -1
-ground.type = High
-ground.hittime = 20
-air.hittime = 20
-yaccel = 0.5
-ground.velocity = -5,-5
-air.velocity = -5,-5
-air.animtype = Back
-air.juggle = 5
-numhits = 1
-palfx.time = 10
-palfx.add = 30,0,0
-fall = 1
-
-[State 0, EnvColor]
-type = EnvColor
-trigger1 = root, movetype = H
-value = 255,255,255
-time = 1
-
-[State 0, DestroySelf]
-type = DestroySelf
-trigger1 = AnimTime = 0
-trigger2 = parent, stateno != 3500
-
-;---------------------------------------------------------------
 ;Super Beam Down
 [Statedef 7502]
 type = S
@@ -3017,7 +2746,7 @@ persistent = 1
 type = BindToParent
 trigger1 = 1
 time = 1
-pos = 65,-35
+pos = 15,-20
 ignorehitpause = 1
 
 [State 0, HitDef]
@@ -3854,87 +3583,6 @@ alpha = 250-time*25,time*25
 type = DestroySelf
 trigger1 = Time >= 10
 ignorehitpause = 1
-
-;---------------------------------------------------------------------------
-;---------------------------------------------------------------------------
-;---------------------------------------------------------------------------
-; Body Ozaru
-Statedef 8015]
-type    = S
-movetype= I
-physics = S
-juggle  = 5
-ctrl = 0
-anim = 8015
-
-[State 0, ParentVarSet]
-type = ParentVarSet
-trigger1 = time >= 0
-v = 41
-value = 0
-
-[State 0, BindToParent]
-type = BindToParent
-trigger1 = 1
-time = 1
-pos = 0,0
-
-[State 0, HitOverride]
-type = HitOverride
-trigger1 = 1
-attr = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
-slot = 0
-stateno = 8016
-time = 1
-forceair = 0
-; 
-[State 0, DestroySelf]
-type = DestroySelf
-trigger1 = root, var(40) = 0
-
-;---------------------------------------------------------------------------
-; Body Ozaru Loosing Life
-Statedef 8016]
-type    = S
-movetype= H
-juggle  = 5
-ctrl = 0
-anim = 8015
-
-[State 0, NotHitBy]
-type = NotHitBy
-trigger1 = 1
-value = SCA,NA,SA,HA,NP,SP,HP,NT,ST,HT
-time = 1
-
-[State 0, ParentVarSet]
-type = ParentVarSet
-trigger1 = !time
-v = 41
-value = -ceil(GetHitVar(Damage)/3)
-
-[State 0, BindToParent]
-type = BindToParent
-trigger1 = 1
-time = 1
-pos = 0,0
-
-[State 0, ChangeState]
-type = ChangeState
-trigger1 = Time > 0
-value = 8015
-ctrl = 0
-
-[State 0, DestroySelf]
-type = DestroySelf
-trigger1 = root, var(40) = 0
-
-;---------------------------------------------------------------------------
-;Author: P.o.t.S.
-;pabmsilva@hotmail.com
-;http://pots.mugenguild.com
-;modificado por Duende Macabro a.k.a. DM
-;ahora usado por Sawady
 
 ; super charge
 [Statedef 8100]

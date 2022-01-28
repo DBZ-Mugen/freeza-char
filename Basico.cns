@@ -1327,7 +1327,7 @@ value = 1006
 ctrl = 0
 
 ;---------------------------------------------------------------------------
-; Strong Punch Down
+; Strong Kick Down
 [Statedef 611]
 type    = A
 movetype= A
@@ -1605,23 +1605,6 @@ add = 0+3*(time-60),0+(time-60),0+(time-60)
 mul = 256,256,256
 invertall = 0
 color = 256
-
-[State 0, Explod]
-type = Explod
-Trigger1 = Animelem = 8
-anim = 7040
-ID = 7040
-pos = 45,-58
-postype = p1
-postype = p1
-bindtime = -1
-removetime = -2
-scale = 1.2,1.2
-sprpriority = 2
-shadow = 0,0,0
-removeongethit = 1
-ownpal = 1
-ignorehitpause = 1
 
 [State 210, 2]
 type = HitDef

@@ -98,25 +98,6 @@ type = PlaySnd
 trigger1 = AnimElem = 1
 value = 105,0
 
-[State 0, Explod]
-type = Explod
-trigger1 = Animelem = 2
-trigger2 = Animelem = 3
-trigger3 = Animelem = 4
-trigger4 = Animelem = 5
-trigger5 = Animelem = 6
-trigger6 = Animelem = 7
-anim = 7040
-ID = 7040
-pos = 35,-38
-postype = p1
-bindtime = -1
-removetime = -2
-scale = 1,1
-sprpriority = 2
-shadow = 0,0,0
-removeongethit = 1
-
 [State 210, 2]
 type = HitDef
 trigger1 = Animelem = 2
@@ -164,28 +145,15 @@ envshake.time = 25
 envshake.freq = 120
 envshake.ampl = 3
 
-[State 0]
-type = Helper
-triggerall = MoveHit
-trigger1 = Animelem = 2
-trigger2 = Animelem = 3
-trigger3 = Animelem = 4
-trigger4 = Animelem = 5
-trigger5 = Animelem = 6
-trigger6 = Animelem = 7
-helpertype = Normal
-ID = 8000
-stateno = 8000
-pos = 47,-40
-size.xscale = 1
-size.yscale = 1
-ignorehitpause = 1
-persistent = 0
-
 [State 0, StateTypeSet]
 type = StateTypeSet
 trigger1 = pos y < 0
 statetype = A
+
+[State 0, CtrlSet]
+type = VelSet
+trigger1 = AnimElem = 8
+x = 0
 
 [State 0, StateTypeSet]
 type = StateTypeSet
@@ -243,7 +211,7 @@ stateno = 8100
 ID = 8100
 name = "Super Charge"
 postype = p1
-pos = 32,-60
+pos = 8,-65
 ownpal = 1
 persistent = 0
 supermovetime = 9999
@@ -352,12 +320,6 @@ juggle  = 5
 anim = 3500
 ctrl = 0
 
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = Animelem = 3 && command = "holdup"
-value = 3502
-elem = 1
-
 [State 0, PalFX]
 type = PalFX
 trigger1 = anim = 3500 && AnimElem = 1
@@ -399,20 +361,17 @@ channel = 1
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = anim = 3500 && AnimElem = 3
-trigger2 = anim = 3502 && AnimElem = 1
 value = 3500,0
 
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = anim = 3500 && AnimElem = 3
-trigger2 = anim = 3502 && AnimElem = 1
 value = 3,18
 volume = 500
 
 [State 0, Explod]
 type = Explod
 trigger1 = anim = 3500 && animelemtime(4) < 0 && animelemtime(3) >= 0
-trigger2 = anim = 3502 && animelemtime(1) >= 0
 trigger1 = Timemod = 8,0
 anim = 7001
 ID = 7001
@@ -428,7 +387,6 @@ ownpal = 1
 [State 0, Explod]
 type = Explod
 trigger1 = anim = 3500 && animelemtime(4) < 0 && animelemtime(3) >= 0
-trigger2 = anim = 3502 && animelemtime(2) < 0 && animelemtime(1) >= 0
 trigger1 = Timemod = 8,0
 anim = 7001
 ID = 7001
@@ -457,25 +415,9 @@ sprpriority = 3
 removeongethit = 1
 ownpal = 1
 
-[State 0, Explod]
-type = Explod
-trigger1 = anim = 3502 && AnimElem = 1
-anim = 7023
-ID = 7023
-pos = 65,-50
-postype = p1
-facing = -1
-bindtime = -1
-removetime = 94
-scale = .4,.5
-sprpriority = 3
-removeongethit = 1
-ownpal = 1
-
 [State 0, PalFX]
 type = PalFX
 trigger1 = anim = 3500 && AnimElem = 3
-trigger2 = anim = 3502 && AnimElem = 1
 time = 105
 add = 70,35,35
 mul = 256,256,256
@@ -491,7 +433,6 @@ ignorehitpause = 1
 [State 0, HitBy]
 type = HitBy
 trigger1 = anim = 3500 && animelemtime(3) >= 0
-trigger2 = anim = 3502 && animelemtime(1) >= 0
 value = SCA,SA,HA,SP,HP,ST,HT
 time = 1
 
@@ -502,20 +443,6 @@ helpertype = normal
 name = "superbeam"
 ID = 7500
 stateno = 7500
-pos = 45,-66
-postype = p1
-keyctrl = 1
-size.xscale = .6
-size.yscale = .7
-ownpal = 1
-
-[State 0, Helper]
-type = Helper
-trigger1 = anim = 3502 && Animelem = 1
-helpertype = normal
-name = "superbeam"
-ID = 7501
-stateno = 7501
 pos = 45,-66
 postype = p1
 keyctrl = 1
@@ -538,19 +465,6 @@ sprpriority = 3
 removeongethit = 1
 ownpal = 1
 
-[State 0, Helper]
-type = Helper
-trigger1 = anim = 3502 && animelemtime(1) = 94
-helpertype = normal ;player
-name = "handfx_finish"
-ID = 6003
-stateno = 6003
-pos = 70,-115
-postype = p1
-ownpal = 1
-size.xscale = 0.4
-size.yscale = 0.5
-
 [State 400, 4]
 type = ChangeState
 trigger1 = AnimTime = 0
@@ -558,13 +472,13 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Super Beam Air
+; Super Beam Down
 [Statedef 3501]
 type    = A
 movetype= I
 physics = A
 juggle  = 5
-anim = 3503
+anim = 3501
 ctrl = 0
 velset = 0,0
 
@@ -578,16 +492,64 @@ invertall = 0
 color = 256
 persistent = 0
 
+[State 3200, superchargehelper]
+type = Helper
+trigger1 = AnimElem = 1
+helpertype = normal
+stateno = 8100
+ID = 8100
+name = "Super Charge"
+postype = p1
+pos = 15,-50
+ownpal = 1
+persistent = 0
+supermovetime = 9999
+
+[State 2100, superchargepause]
+type = SuperPause
+trigger1 = AnimElem = 1
+time = 45
+anim = -1
+sound = s8100,0
+darken = 0
+poweradd = -1500
+endcmdbuftime = 45
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 3000,0
+channel = 1
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 3500,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 3
+value = 3,18
+volume = 500
+
+[State 0, PalFX]
+type = PalFX
+trigger1 = AnimElem = 3
+time = 105
+add = 70,35,35
+mul = 256,256,256
+invertall = 0
+color = 256
+
 [State 0, HitBy]
 type = HitBy
 trigger1 = 1
 value = SCA,SA,HA,SP,HP,ST,HT
 time = 1
 
-[State 0, Helper]
+[State 0, hand fx]
 type = Helper
-trigger1 = AnimElem = 1
-helpertype = normal ;player
+trigger1 = AnimElem = 3
 name = "handfx"
 ID = 6004
 stateno = 6004
@@ -597,10 +559,9 @@ ownpal = 1
 size.xscale = 0.4
 size.yscale = 0.5
 
-[State 0, Helper]
+[State 0, finish hand fx]
 type = Helper
-trigger1 = animelemtime(1) = 94
-helpertype = normal ;player
+trigger1 = animelemtime(3) = 94
 name = "handfx"
 ID = 6003
 stateno = 6003
@@ -610,31 +571,30 @@ ownpal = 1
 size.xscale = 0.4
 size.yscale = 0.5
 
-[State 0, Helper]
+[State 0, beam]
 type = Helper
-trigger1 = Animelem = 1
-helpertype = normal
+trigger1 = Animelem = 3
 name = "superbeam"
 ID = 7502
 stateno = 7502
-pos = 65,-35
+pos = 0,-35
 postype = p1
 keyctrl = 1
 size.xscale = .6
 size.yscale = .7
 ownpal = 1
 
-[State 0, VelSet]
+[State 0, quieto]
 type = VelSet
 trigger1 =  Animelemtime(4) < 0
 y = 0
 
-[State 0, VelSet]
+[State 0, cayendo]
 type = VelSet
-trigger1 = Animelemtime(3) >= 0
+trigger1 = Animelemtime(4) >= 0
 x = -1
 
-[State 0, ChangeState]
+[State 0, volar]
 type = ChangeState
 triggerall = var(3) = 1 ; fly
 trigger1 = AnimTime = 0
@@ -642,9 +602,8 @@ value = 1006
 ctrl = 0
 
 ;---------------------------------------------------------------------------
-; Solar Flaires
-
-[Statedef 3505]
+; Trap
+[Statedef 3505, trap]
 type    = S
 movetype= I
 physics = S
@@ -1270,7 +1229,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Hyper Solar Flaires Down
+; Hyper Ball
 [Statedef 3550]
 type    = A
 movetype= I

@@ -275,7 +275,7 @@ juggle  = 4
 poweradd= 65
 ctrl = 0
 velset = 0,0
-anim = 611
+anim = 253
 sprpriority = -1
 hitcountpersist = 1
 
