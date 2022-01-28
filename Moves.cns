@@ -1698,7 +1698,6 @@ hitcountpersist = 1
 type = PlaySnd
 trigger1 = time = 0
 value = 3,15
-volume = 500
 
 [State 0, MakeDust]
 type = MakeDust
@@ -1730,7 +1729,6 @@ trigger1 = Animelem = 2
 anim = 7014
 ID = 7014
 pos = 25,0
-postype = p1
 bindtime = -1
 removetime = 30
 scale = .4,.4
@@ -1776,7 +1774,6 @@ envshake.ampl = ifelse(Random <500,-4,4)
 [State 0]
 type = Helper
 trigger1 = MoveHit
-helpertype = Normal
 ID = 8000
 stateno = 8000
 pos = 50,-5

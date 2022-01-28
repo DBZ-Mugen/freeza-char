@@ -75,7 +75,7 @@ time = 1
 
 [Command]
 name = "hyperball"
-command = D, F, D, B, c
+command = D, B, D, F, c
 time = 30
 
 [Command]
@@ -83,19 +83,9 @@ name = "superbeam"
 command = D, F, D, F, c
 time = 25
 
-[Command] ; in air
-name = "superbeam"
-command = D, F, D, F, c
-time = 25
-
 [Command]
-name = "superball"
+name = "disk"
 command = D, B, D, B, c
-time = 25
-
-[Command]
-name = "trap"
-command = D, B, D, F, c
 time = 25
 
 ;-| super attacks |-----------------------------------------------------
@@ -324,29 +314,10 @@ var(49) = 1
 ; super energy moves
 
 ;hyperball
-[State -1, hypersolarflairesdown]
-type = ChangeState
-value = 3550
-triggerall = power >= 3000
-triggerall = command = "hyperball"
-trigger1 = statetype = S || statetype = A
-trigger1 = ctrl
-
-;superball
-[State -1, superball]
+[State -1, hyperball]
 type = ChangeState
 value = 3510
-triggerall = power >= 2000
-triggerall = command = "superball"
-trigger1 = statetype = A || statetype = S
-trigger1 = ctrl
-
-;solarflaires
-[State -1, trap]
-type = ChangeState
-value = 3505
-triggerall = power >= 2500
-triggerall = command = "trap"
+triggerall = command = "hyperball"
 trigger1 = statetype = A || statetype = S
 trigger1 = ctrl
 
@@ -500,15 +471,10 @@ type = ChangeState
 value = 1210
 triggerall = power >= 500
 triggerall = command = "coletazos"
+triggerall = statetype = S
 trigger1 = ctrl
 trigger2 = stateno = [210,250]
-trigger2 = movehit
-trigger3 = stateno = [1200,1204]
-trigger3 = movehit
-trigger4 = stateno = [600,640]
-trigger4 = movehit
-trigger5 = stateno = [1006,1010]
-trigger6 = stateno = 1210 && hitcount < 5 && movehit
+trigger3 = stateno = 1210 && hitcount < 5 && movehit
 
 [State 0, coletazos continuacion]
 type = ChangeState
