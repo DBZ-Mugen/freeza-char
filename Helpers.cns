@@ -291,7 +291,7 @@ y = 0
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = Time = 1
-value = 191,5
+value = 105,0
 
 [State 0, AfterImage]
 type = AfterImage

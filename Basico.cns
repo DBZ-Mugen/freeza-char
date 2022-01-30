@@ -6,12 +6,6 @@ ctrl = 0
 anim = 170+random%2
 velset = 0,0
 
-;ozaru
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = var(40) != 0 && !time
-value = 3913
-
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = animelem = 3 && var(40) != 0
