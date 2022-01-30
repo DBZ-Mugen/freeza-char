@@ -79,6 +79,11 @@ command = D, B, D, F, c
 time = 30
 
 [Command]
+name = "explo"
+command = D, F, D, B, c
+time = 30
+
+[Command]
 name = "superbeam"
 command = D, F, D, F, c
 time = 25
@@ -317,8 +322,18 @@ var(49) = 1
 [State -1, hyperball]
 type = ChangeState
 value = 3510
+triggerall = power >= 3000
 triggerall = command = "hyperball"
 trigger1 = statetype = A || statetype = S
+trigger1 = ctrl
+
+;explo
+[State -1, explo]
+type = ChangeState
+value = 3520
+triggerall = power >= 3000 ; && life < 500
+triggerall = command = "explo"
+trigger1 = statetype = S
 trigger1 = ctrl
 
 ;super air beam

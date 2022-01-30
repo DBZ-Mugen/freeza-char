@@ -2783,7 +2783,7 @@ type = HitDef
 trigger1 = time = 5
 attr = S,HP
 animtype = Light
-damage = 150,50
+damage = 50,50
 guardflag = MA
 hitflag = MAF
 priority = 1,Hit
@@ -2863,6 +2863,133 @@ sprpriority = -4
 ownpal = 1
 persistent = 0
 
+[State 0, Explod]
+type = Explod
+trigger1 = Animelem = 1
+anim = 7043
+ID = 7043
+pos = 0,10
+postype = p1
+bindtime = 1
+removetime = -2
+pausemovetime = 999
+scale = .7,.7
+sprpriority = 2
+shadow = 0,0,0
+ownpal = 0
+ignorehitpause = 1
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+ignorehitpause = 1
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = addalpha
+alpha = 256-7*time,256
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = time >= 0
+scale = .2+(time)*0.08,.2+(time)*0.08
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = Time >= 50
+
+;=======================================================|
+;=======================================================|
+; Super Explo Explosion
+[Statedef 7512]
+type = A
+movetype = A
+physics = N
+juggle = 0
+anim = 7042
+sprpriority = 3
+velset = 0,0
+
+[State 0, RemoveExplod]
+type = RemoveExplod
+trigger1 = !time
+id = 7002
+ignorehitpause = 1
+
+[State 0, ParentVarSet]
+type = ParentVarSet
+trigger1 = movehit
+v = 21
+value = 1
+
+[State 0, Pause]
+type = Pause
+trigger1 = time = [5,20]
+time = 1
+movetime = 1
+
+[State 200,HitDef]
+type = HitDef
+trigger1 = time = 5
+attr = S,HP
+animtype = Light
+damage = 500,50
+guardflag = MA
+hitflag = MAF
+priority = 1,Hit
+sparkno	= -1
+guard.sparkno = -1
+sparkxy = 0,0
+ground.type = High
+ground.slidetime = 13
+ground.hittime = 18
+ground.velocity = -15,-5
+air.velocity= -15,-5
+fall = 1
+airguard.velocity = 0,0
+ground.cornerpush.veloff = 0
+air.cornerpush.veloff = 0
+down.cornerpush.veloff = 0
+guard.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+
+[State 0, PalFXWiz]
+type = BgPalFX
+trigger1 = !time
+time = 50
+add = 7,-200,-200
+mul = 256,256,256
+sinadd = 30,30,0,50
+invertall = 0
+color = 0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = Time = 0
+time = 0
+length = 15
+palinvertall = 0
+palbright = 0,0,0
+palcontrast = 120,20,20
+paladd = 0,0,0
+timegap = 1
+framegap = 2
+trans = add
+
+[State 0, EnvShake]
+type = EnvShake
+trigger1 = Animelem = 1
+time = 40
+freq = 80
+ampl = -5
+phase = 90
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 3002,2
 
 [State 0, Explod]
 type = Explod
