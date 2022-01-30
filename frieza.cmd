@@ -88,11 +88,6 @@ name = "superbeam"
 command = D, F, D, F, c
 time = 25
 
-[Command]
-name = "disk"
-command = D, B, D, B, c
-time = 25
-
 ;-| super attacks |-----------------------------------------------------
 
 [Command]
@@ -106,6 +101,11 @@ command = D, F, D, F, b
 time = 25
 
 ;-| energy attacks |-----------------------------------------------------
+
+[Command]
+name = "disk"
+command = F, B, F, c
+time = 25
 
 [Command]
 name = "beam"
@@ -425,6 +425,16 @@ trigger1 = statetype = S
 trigger1 = ctrl
 trigger2 = stateno = [210,250]
 trigger2 = movehit
+
+;---------------------------------------------------------------------------
+;disk
+[State -1, disk]
+type = ChangeState
+value = 1511
+triggerall = command = "disk"
+triggerall = power >= 500
+trigger1 = statetype = S || statetype = A
+trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
 ;Fireball 2

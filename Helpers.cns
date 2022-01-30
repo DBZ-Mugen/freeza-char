@@ -210,6 +210,161 @@ ignorehitpause = 1
 
 ;=======================================================|
 ;=======================================================|
+; Disk
+[Statedef 7001]
+type = A
+movetype = A
+juggle = 0
+ctrl = 0
+anim = 7006
+sprpriority = 3
+
+;===========================================
+; VELOCITY
+;===========================================
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = !time && parent, command != "holdup" && parent, command != "holddown"
+v = 8
+value = 1
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = !time && parent, command = "holdup"
+v = 8
+value = 2
+
+[State 0, VarSet]
+type = VarSet
+trigger1 = !time && parent, command = "holddown"
+v = 8
+value = 3
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0 && time <= 50 && var(8) = 0
+x = 10
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0 && var(8) = 1
+x = 10
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 50 && var(8) = 1
+x = -10
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0 && var(8)  = 2
+x = 15
+y = -5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 50 && var(8) = 2
+x = -15
+y = 5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = pos y < 0 && var(8) = 3
+x = 10
+y = 5
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 50 && var(8) = 3
+x = -10
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = pos y >= 0
+y = 0
+
+;===========================================
+; FX
+;===========================================
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 1
+value = 191,5
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = Time = 0
+time = -1
+time = 36
+length = 15
+palinvertall = 0
+palbright = 0,0,0
+palcontrast = 120,20,20
+paladd = 0,0,0
+timegap = 1
+framegap = 2
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+persistent = 1
+ignorehitpause = 1
+
+;===========================================
+; PROJECTILE COLLISION
+;===========================================
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+stateno = 7005
+attr = SCA,SA,HA,NP,SP,HP
+slot = 1
+time = -1
+
+[State 0, hitby]
+type = hitby
+trigger1 = 1
+value = SCA,SA,HA,NP,SP,HP
+time = 1
+ignorehitpause = 1
+
+;===========================================
+; HIT
+;===========================================
+
+[State 200,HitDef]
+type = HitDef
+trigger1 = timemod = 2, 0
+attr = S,NP
+animtype = Light
+damage = 40
+guardflag = MA
+hitflag = MAF
+priority = 1,Hit
+sparkno	= -1
+guard.sparkno = -1
+sparkxy = 0,0
+ground.type = Low
+ground.slidetime = 13
+ground.hittime = 15
+ground.velocity = -10
+air.velocity= -2,-3
+
+;===========================================
+; Destroy
+;===========================================
+
+[State 0, DestroySelf]
+type = DestroySelf
+trigger1 = time >= 100 && screenpos x != [0,320]
+
+;=======================================================|
+;=======================================================|
 ; Fireball
 [Statedef 7002]
 type = A
@@ -714,6 +869,8 @@ volume = -100
 type = DestroySelf
 trigger1 = Time > 0
 ignorehitpause = 1
+
+
 
 ;=======================================================|
 ;=======================================================|
@@ -1465,395 +1622,6 @@ type = DestroySelf
 trigger1 = Time > 0
 ignorehitpause = 1
 
-;---------------------------------------------------
-;---------------------------------------------------
-;---------------------------------------------------
-;---------------------------------------------------
-;---------------------------------------------------
-;---------------------------------------------------
-;---------------------------------------------------
-; Ozaru big Fireball
-Statedef 7014]
-type = A
-movetype = A
-physics = N
-juggle = 0
-ctrl = 0
-anim = 7022
-sprpriority = 3
-
-;count the number of times that
-;the fireball is hitted
-[State 0, ParentVarAdd]
-type = ParentVarAdd
-trigger1 = !time
-v = 5
-value = 1
-
-;===========================================
-; VELOCITY
-;===========================================
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time >= 2
-x = 15
-y = ifelse(random>=500,-random%3,random%3)
-
-;===========================================
-; FX
-;===========================================
-
-[State 0, AfterImage]
-type = AfterImage
-trigger1 = Time = 0
-time = -1
-length = 20
-palcolor = 256
-palbright = 10,10,10
-palcontrast = 0,0,0
-;palpostbright = 0,0,0
-paladd = 15,15,20 ; 20 is for more blue
-;palmul = .65,.65,.75
-timegap = 1
-framegap = 1
-trans = add
-
-[State 0, AssertSpecial]
-type = AssertSpecial
-trigger1 = 1
-flag = noshadow
-persistent = 1
-ignorehitpause = 1
-
-;===========================================
-; PROJECTILE COLLISION
-;===========================================
-
-[State 0, HitOverride]
-type = HitOverride
-trigger1 = 1
-stateno = ifelse(parent, var(5)>=3,7007,7006)
-attr = SCA,NP,SP,HP
-slot = 1
-time = -1
-
-[State 0, hitby]
-type = hitby
-trigger1 = 1
-value = SCA,NP,SP,HP
-time = 1
-ignorehitpause = 1
-
-;===========================================
-; HIT
-;===========================================
-
-[State 200,HitDef]
-type = HitDef
-trigger1 = !time
-attr = S,HP
-animtype = Light
-damage = 200,100
-guardflag = MA
-hitflag = MAF
-priority = 1,Hit
-sparkno	= -1
-guard.sparkno = -1
-sparkxy = 0,0
-ground.type = High
-ground.slidetime = 13
-ground.hittime = 18
-ground.velocity = -8
-air.velocity= -8,-3
-fall = 1
-
-;===========================================
-; CHANGESTATE
-;===========================================
-
-[State 0, ChangeState]
-type = ChangeState
-trigger1 = movecontact
-trigger2 = frontedgedist < -35 || pos y > 0 ; SCREENOUT
-value = 7015
-
-;=============================================================================|
-;=============================================================================|
-; Ozaru big Fireball Explosion
-Statedef 7015]
-type = A
-anim = 7999
-sprpriority = 3
-velset = 0, 0
-
-[State 0]
-type = Explod
-trigger1 = !Time
-anim = 8012
-ID = 8012
-vel = ceil((-500+random)/80),ceil((-500+random)/80)
-random = 20,20
-pos = 0,0
-postype = p1
-scale = .8,.8
-facing = -1+(random<500)*2
-sprpriority = 9
-supermove = 1
-removetime = -2
-supermovetime = 300
-pausemovetime = 300
-
-[State 0]
-type = Explod
-trigger1 = !Time
-anim = 8012
-ID = 8012
-vel = ceil((-500+random)/80),ceil((-500+random)/80)
-random = 20,20
-pos = 0,0
-postype = p1
-scale = .8,.8
-facing = -1+(random<500)*2
-sprpriority = 9
-supermove = 1
-removetime = -2
-supermovetime = 300
-pausemovetime = 300
-
-[State 0]
-type = Explod
-trigger1 = !Time
-anim = 8012
-ID = 8012
-vel = ceil((-500+random)/80),ceil((-500+random)/80)
-random = 20,20
-pos = 0,0
-postype = p1
-scale = .8,.8
-facing = -1+(random<500)*2
-sprpriority = 9
-supermove = 1
-removetime = -2
-supermovetime = 300
-pausemovetime = 300
-
-[State 0]
-type = Explod
-trigger1 = !Time
-anim = 8012
-ID = 8012
-vel = ceil((-500+random)/80),ceil((-500+random)/80)
-random = 20,20
-pos = 0,0
-postype = p1
-scale = .8,.8
-facing = -1+(random<500)*2
-sprpriority = 9
-supermove = 1
-removetime = -2
-supermovetime = 300
-pausemovetime = 300
-
-[State 0]
-type = Explod
-trigger1 = !Time
-anim = 8012
-ID = 8012
-vel = ceil((-500+random)/80),ceil((-500+random)/80)
-random = 20,20
-pos = 0,0
-postype = p1
-scale = .8,.8
-facing = -1+(random<500)*2
-sprpriority = 9
-supermove = 1
-removetime = -2
-supermovetime = 300
-pausemovetime = 300
-
-[State 0, circle]
-type = Explod
-trigger1 = !Time
-anim = 8011
-ID = 8000
-pos = 19,2
-postype = p1
-scale = 1.2,1.2
-sprpriority = 9
-ignorehitpause = 1
-supermove = 1
-supermovetime = 10
-pausemovetime = 10
-
-;Explosion Chica
-[State 0, Explod]
-type = Explod
-trigger1 = Time = 1
-anim = 7032
-ID = 7032
-pos = 20,0 ; offset
-postype = p1
-facing = 1
-vfacing = 1
-bindtime = 1
-removetime = -2
-scale = 1.2,1.2
-sprpriority = 3
-shadow = 0,0,0
-ownpal = 1
-removeongethit = 0
-
-;Explosion Chica
-[State 0, Explod]
-type = Explod
-trigger1 = Time = 1
-anim = 7003
-ID = 7003
-pos = 20,0 ; offset
-postype = p1
-facing = 1
-vfacing = 1
-bindtime = 1
-removetime = -2
-scale = 1.2,1.2
-sprpriority = 3
-shadow = 0,0,0
-ownpal = 1
-removeongethit = 0
-
-[State 0, EnvShake]
-type = EnvShake
-trigger1 = Time = 0
-time = 10
-freq = 80
-ampl = -4
-phase = 110
-
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = Time = 1
-value = 300,1
-volume = -100
-
-[State 0, DestroySelf]
-type = DestroySelf
-trigger1 = Time > 0
-ignorehitpause = 1
-
-;===========================================
-; VELOCITY
-;===========================================
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = Time >= 2
-x = 10
-y = 10
-
-;===========================================
-; FX
-;===========================================
-
-[State 0, AfterImage]
-type = AfterImage
-trigger1 = Time = 0
-time = -1
-length = 20
-palcolor = 256
-palbright = 10,10,10
-palcontrast = 0,0,0
-;palpostbright = 0,0,0
-paladd = 15,15,20 ; 20 is for more blue
-;palmul = .65,.65,.75
-timegap = 1
-framegap = 1
-trans = add
-
-[State 0, AssertSpecial]
-type = AssertSpecial
-trigger1 = 1
-flag = noshadow
-persistent = 1
-ignorehitpause = 1
-
-;===========================================
-; PROJECTILE COLLISION
-;===========================================
-
-[State 0, HitOverride]
-type = HitOverride
-trigger1 = 1
-stateno = ifelse(parent, var(5)>=3,7007,7006)
-attr = SCA,NP,SP,HP
-slot = 1
-time = -1
-
-[State 0, hitby]
-type = hitby
-trigger1 = 1
-value = SCA,NP,SP,HP
-time = 1
-ignorehitpause = 1
-
-;===========================================
-; HIT
-;===========================================
-
-[State 200,HitDef]
-type = HitDef
-trigger1 = !time
-attr = S,HP
-animtype = Light
-damage = 150,50
-guardflag = MA
-hitflag = MAF
-priority = 1,Hit
-sparkno	= -1
-guard.sparkno = -1
-sparkxy = 0,0
-ground.type = High
-ground.slidetime = 13
-ground.hittime = 18
-ground.velocity = -8
-air.velocity= -8,-3
-fall = 1
-
-;===========================================
-; CHANGESTATE
-;===========================================
-
-[State 0, Explod]
-type = Explod
-trigger1 = pos y >= 0
-anim = 7020
-ID = 7020
-pos = 20,15
-postype = p1
-scale = .8,.8
-sprpriority = -4
-ownpal = 1
-persistent = 0
-
-[State 0, Explod]
-type = Explod
-trigger1 = pos y >= 0
-anim = 7021
-ID = 7021
-pos = 20,15
-postype = p1
-scale = .5,.5
-sprpriority = -4
-ownpal = 1
-persistent = 0
-
-[State 0, ChangeState]
-type = ChangeState
-trigger1 = movecontact
-trigger2 = frontedgedist < -35 || pos y > 0 ; SCREENOUT
-value = 7007
-
-
 ;---------------------------------------------------------------------
 ;---------------------------------------------------------------------
 ;Beam
@@ -1928,6 +1696,120 @@ palfx.add = 30,0,0
 type = DestroySelf
 trigger1 = AnimTime = 0
 trigger2 = parent, stateno != [1505,1506]
+
+;=======================================================|
+;=======================================================|
+; Fireball
+[Statedef 7030]
+type = A
+movetype = A
+juggle = 0
+ctrl = 0
+anim = 7030
+sprpriority = 3
+
+[State 0, Trans]
+type = Trans
+trigger1 = 1
+trans = add
+
+[State 0, AngleDraw]
+type = AngleDraw
+trigger1 = 1
+scale = .75,.75
+ignorehitpause = 1
+
+;===========================================
+; VELOCITY
+;===========================================
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = Time = 0
+x = 20
+
+;===========================================
+; FX
+;===========================================
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 1
+value = 300,0
+
+[State 0, AfterImage]
+type = AfterImage
+trigger1 = Time = 0
+time = -1
+time = 36
+length = 15
+palinvertall = 0
+palbright = 0,0,0
+palcontrast = 120,20,20
+paladd = 0,0,0
+timegap = 1
+framegap = 2
+trans = add
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = noshadow
+persistent = 1
+ignorehitpause = 1
+
+;===========================================
+; PROJECTILE COLLISION
+;===========================================
+
+[State 0, HitOverride]
+type = HitOverride
+trigger1 = 1
+stateno = 7003
+attr = SCA,SA,HA,NP,SP,HP
+slot = 1
+time = -1
+
+[State 0, hitby]
+type = hitby
+trigger1 = 1
+value = SCA,SA,HA,NP,SP,HP
+time = 1
+ignorehitpause = 1
+
+;===========================================
+; HIT
+;===========================================
+
+[State 200,HitDef]
+type = HitDef
+trigger1 = !time
+attr = S,NP
+animtype = Light
+damage = 20
+guardflag = MA
+hitflag = MAF
+priority = 1,Hit
+sparkno	= -1
+guard.sparkno = -1
+sparkxy = 0,0
+ground.type = High
+ground.slidetime = 13
+ground.hittime = 18
+ground.velocity = -2
+air.velocity= - 2,-3
+envshake.time = 10
+envshake.freq = 80
+envshake.ampl = ifelse(Random <500,-4,4)
+
+;===========================================
+; CHANGESTATE
+;===========================================
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = frontedgedist < -35 || pos y > 0 ; SCREENOUT
+value = 7003
 
 ;------------------------------------------------------------------------------
 ;------------------------------------------------------------------------------
