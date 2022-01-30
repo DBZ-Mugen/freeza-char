@@ -827,19 +827,7 @@ trigger1 = AnimElem = 2
 name = "bigfireball"
 ID = 7510
 stateno = 7510
-pos = -8,-75
-postype = p1
-ownpal = 1
-size.xscale = 1
-size.yscale = 1
-
-[State 0, Helper]
-type = Helper
-trigger1 = AnimElem = 2
-name = "bigfireball"
-ID = 7510
-stateno = 7510
-pos = -8,-75
+pos = -8,-150
 postype = p1
 ownpal = 1
 size.xscale = 1
