@@ -2665,7 +2665,7 @@ type = HitDef
 trigger1 = time = 5
 attr = S,HP
 animtype = Light
-damage = 50,50
+damage = 400,200
 guardflag = MA
 hitflag = MAF
 priority = 1,Hit

@@ -1792,6 +1792,7 @@ trigger1 = Animelem = 2
 anim = 7014
 ID = 7014
 pos = 25,0
+postype = P1  ;P2, Front, Back, Left, Right
 bindtime = -1
 removetime = 30
 scale = .4,.4

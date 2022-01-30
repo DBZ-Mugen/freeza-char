@@ -718,7 +718,7 @@ type = Explod
 trigger1 = time = 0 && prevstateno != 3505
 anim = 19000
 id = 19000
-pos = -200,160
+pos = -500,0
 postype = back
 ownpal = 1
 bindtime = -1
@@ -927,7 +927,7 @@ type = Explod
 trigger1 = time = 0 && prevstateno != 3520
 anim = 19000
 id = 19000
-pos = -200,160
+pos = -500,0
 postype = back
 ownpal = 1
 bindtime = -1
