@@ -25,5 +25,5 @@ st3 = Specials.cns
 pal1 = frieza.act
 
 [Arcade]
-intro.storyboard = intro.def
-ending.storyboard = ending.def
+;intro.storyboard = intro.def
+;ending.storyboard = ending.def
